@@ -75,6 +75,7 @@
       overflow: hidden;
       background: var(--dark);
       margin-bottom: 0;
+      padding-top: 80px;
     }
     .detail-hero-bg {
       position: absolute;
@@ -628,7 +629,7 @@
             </div>` : ''}
 
             ${photos.length > 1 ? `
-            <h2>Фотографии</h2>
+            <h2>Фот��графии</h2>
             <div class="detail-gallery">
               ${photos.map((p, i) => `<img src="${p.url || p.thumb || p}" alt="Фото ${i+1}" loading="lazy" onclick="openLightbox('${p.url || p.thumb || p}')">`).join('')}
             </div>` : ''}

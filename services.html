@@ -266,9 +266,16 @@
 
     /* ── Tours Grid ── */
     .tours-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.8rem;
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+      gap: 1.8rem !important;
+      overflow-x: visible !important;
+      scroll-snap-type: none !important;
+    }
+    .tours-grid > .tour-card {
+      min-width: 0 !important;
+      max-width: none !important;
+      flex-shrink: unset !important;
     }
 
     /* ── Skeleton loading ── */
@@ -305,12 +312,17 @@
       border-radius: var(--radius);
       overflow: hidden;
       border: 1px solid var(--border);
-      display: flex;
+      display: flex !important;
       flex-direction: column;
       transition: transform 0.3s, box-shadow 0.3s;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 0.5s ease forwards;
+      width: 100%;
+      min-width: 0 !important;
+      max-width: none !important;
+      text-decoration: none;
+      color: inherit;
     }
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
@@ -653,7 +665,7 @@
 
     @media (max-width: 768px) {
       .cta-banner { padding: 2.5rem 1.5rem; margin: 0; border-radius: 0; }
-      .tours-grid { grid-template-columns: 1fr; }
+      .tours-grid { grid-template-columns: 1fr !important; }
     }
   </style>
 </head>
@@ -937,7 +949,7 @@
         <div class="process-step aos delay-1">
           <div class="step-num">1</div>
           <div class="step-title">Оставьте заявку</div>
-          <p class="step-desc">Заполните форму или напишите нам — расскажите о датах и интересах.</p>
+          <p class="step-desc">��аполните форму или напишите нам — расскажите о датах и интересах.</p>
         </div>
         <div class="process-step aos delay-2">
           <div class="step-num">2</div>
@@ -1092,7 +1104,7 @@
       const includes = t.includes ? t.includes.slice(0, 3) : [];
       const detailUrl = `tour-detail.html?id=${t.id}&source=${t._source}`;
       return `
-        <a href="${detailUrl}" class="tour-card" data-type="${t.type || ''}" style="animation-delay:${delay}s; text-decoration:none; color:inherit;">
+        <a href="${detailUrl}" class="tour-card" data-type="${t.type || ''}" style="animation-delay:${delay}s">
           <div class="tour-card-img">
             ${t.image
               ? `<img src="${t.image}" alt="${t.name || ''}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\"tour-card-img-placeholder\\"><svg width=\\"48\\" height=\\"48\\" viewBox=\\"0 0 24 24\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-width=\\"1\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\"><path d=\\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\\"/><circle cx=\\"12\\" cy=\\"10\\" r=\\"3\\"/></svg></div>'">`
