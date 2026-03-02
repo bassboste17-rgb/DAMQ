@@ -299,37 +299,62 @@
       100% { background-position: -200% 0; }
     }
 
-    /* ── Tour Card ── */
+    /* ── Tour Card - Premium Design ── */
     .tour-card {
       background: var(--white);
-      border-radius: var(--radius);
+      border-radius: 24px;
       overflow: hidden;
-      border: 1px solid var(--border);
+      border: none;
       display: flex;
       flex-direction: column;
-      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 0.5s ease forwards;
+      position: relative;
     }
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
+    .tour-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      padding: 1.5px;
+      background: linear-gradient(135deg, rgba(212,175,55,0.3), transparent 50%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+    }
+    .tour-card:hover::before { opacity: 1; }
     .tour-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 48px rgba(0,0,0,0.10);
+      transform: translateY(-8px);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.12), 0 8px 24px rgba(212,175,55,0.08);
     }
     .tour-card-img {
       position: relative;
-      height: 220px;
+      height: 240px;
       overflow: hidden;
     }
     .tour-card-img img {
       width: 100%; height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    .tour-card:hover .tour-card-img img { transform: scale(1.06); }
+    .tour-card:hover .tour-card-img img { transform: scale(1.08); }
+    .tour-card-img::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+      pointer-events: none;
+    }
     .tour-card-img-placeholder {
       width: 100%; height: 100%;
       background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
@@ -340,30 +365,61 @@
     }
     .tour-badge {
       position: absolute;
-      top: 14px; left: 14px;
-      background: var(--gold);
+      top: 16px; left: 16px;
+      background: linear-gradient(135deg, var(--gold), #e8c547);
       color: var(--dark);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 800;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 4px 12px;
+      padding: 6px 14px;
       border-radius: 50px;
+      box-shadow: 0 4px 12px rgba(212,175,55,0.3);
+      z-index: 2;
     }
     .tour-type-badge {
       position: absolute;
-      top: 14px; right: 14px;
-      background: rgba(10,10,10,0.7);
-      color: rgba(255,255,255,0.9);
-      font-size: 0.68rem;
-      font-weight: 600;
-      padding: 4px 10px;
+      top: 16px; right: 16px;
+      background: rgba(255,255,255,0.95);
+      color: var(--dark);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 6px 12px;
       border-radius: 50px;
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 2;
+    }
+    .tour-card-price-overlay {
+      position: absolute;
+      bottom: 16px; left: 16px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+    }
+    .tour-card-price-overlay .price-label {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .tour-card-price-overlay .price-value {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .tour-card-price-overlay .price-value small {
+      font-size: 0.7rem;
+      font-weight: 500;
+      opacity: 0.8;
     }
     .tour-card-body {
-      padding: 1.4rem 1.4rem 0.8rem;
+      padding: 1.6rem 1.6rem 0.6rem;
       flex: 1;
+      display: flex;
+      flex-direction: column;
     }
     .tour-card-location {
       display: flex;
@@ -378,21 +434,24 @@
     }
     .tour-card-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.18rem;
+      font-size: 1.35rem;
       font-weight: 700;
       color: var(--dark);
-      margin-bottom: 0.6rem;
-      line-height: 1.3;
+      margin-bottom: 0.7rem;
+      line-height: 1.25;
+      transition: color 0.3s;
     }
+    .tour-card:hover .tour-card-title { color: var(--gold); }
     .tour-card-desc {
-      font-size: 0.87rem;
+      font-size: 0.9rem;
       color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      flex: 1;
     }
     .tour-card-includes {
       display: flex;
@@ -414,45 +473,70 @@
     }
     .tour-card-meta {
       display: flex;
-      gap: 1.2rem;
-      padding-top: 0.8rem;
+      gap: 1.4rem;
+      padding: 1rem 0 0;
       border-top: 1px solid var(--border);
-      margin-bottom: 0.2rem;
+      margin-top: auto;
     }
     .meta-item {
       display: flex;
       align-items: center;
-      gap: 5px;
-      font-size: 0.8rem;
-      color: #666;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: #555;
+      font-weight: 500;
     }
-    .meta-item svg { color: var(--gold); flex-shrink: 0; }
+    .meta-item svg { 
+      color: var(--gold); 
+      flex-shrink: 0; 
+      width: 16px;
+      height: 16px;
+    }
     .tour-card-footer {
-      padding: 1rem 1.4rem 1.4rem;
+      padding: 1rem 1.6rem 1.6rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
     }
-    .tour-price { display: flex; flex-direction: column; }
-    .tour-price-label { font-size: 0.72rem; color: #aaa; }
-    .tour-price-value { font-size: 1.5rem; font-weight: 800; color: var(--dark); line-height: 1; }
-    .tour-price-value small { font-size: 0.75rem; font-weight: 500; color: #888; }
+    .tour-price { display: none; }
     .btn-book {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      justify-content: center;
+      gap: 8px;
       background: var(--dark);
       color: #fff;
       text-decoration: none;
-      border-radius: 12px;
-      padding: 0.7rem 1.4rem;
-      font-size: 0.88rem;
+      border-radius: 14px;
+      padding: 0.9rem 2rem;
+      font-size: 0.9rem;
       font-weight: 700;
-      transition: background 0.25s, transform 0.2s;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       white-space: nowrap;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
     }
-    .btn-book:hover { background: var(--gold); color: var(--dark); transform: translateY(-1px); }
+    .btn-book::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--gold), #e8c547);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .btn-book span, .btn-book svg { position: relative; z-index: 1; }
+    .btn-book:hover::before { opacity: 1; }
+    .btn-book:hover { 
+      color: var(--dark); 
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212,175,55,0.35);
+    }
+    .btn-book svg {
+      transition: transform 0.3s;
+    }
+    .btn-book:hover svg { transform: translateX(4px); }
 
     /* ── No results ── */
     .empty-tours {
@@ -1094,24 +1178,24 @@
               : `<div class="tour-card-img-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>`
             }
             ${t.type ? `<span class="tour-type-badge">${t.type}</span>` : ''}
+            <div class="tour-card-price-overlay">
+              <span class="price-label">დან</span>
+              <span class="price-value">$${t.price || '—'} <small>/ პერს.</small></span>
+            </div>
           </div>
           <div class="tour-card-body">
             ${regions.length ? `<div class="dt-regions">${regions.map(r => `<span class="dt-region-chip">${r}</span>`).join('')}</div>` : ''}
             <h3 class="tour-card-title">${t.name || 'უსახელო ტური'}</h3>
             ${t.desc ? `<p class="tour-card-desc">${t.desc}</p>` : ''}
             <div class="tour-card-meta">
-              ${dur.length ? `<span class="meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${dur.join(' / ')}</span>` : ''}
-              ${t.minGroup && t.maxGroup ? `<span class="meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>${t.minGroup}-${t.maxGroup} პერს.</span>` : ''}
+              ${dur.length ? `<span class="meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${dur.join(' / ')}</span>` : ''}
+              ${t.minGroup && t.maxGroup ? `<span class="meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>${t.minGroup}-${t.maxGroup} პერს.</span>` : ''}
             </div>
           </div>
           <div class="tour-card-footer">
-            <div class="tour-price">
-              <span class="tour-price-label">დან</span>
-              <span class="tour-price-value">$${t.price || '—'} <small>/ პერს.</small></span>
-            </div>
             <a href="tour.html?type=day&id=${t.id}" class="btn-book">
-              სრულად
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <span>სრულად ნახვა</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
           </div>
         </div>`;
@@ -1134,6 +1218,10 @@
             }
             ${t.type ? `<span class="tour-type-badge">${t.type}</span>` : ''}
             <span class="tour-badge">${dur.join(' / ') || 'მრავალდღიანი'}</span>
+            <div class="tour-card-price-overlay">
+              <span class="price-label">დან</span>
+              <span class="price-value">$${t.price || '—'} <small>/ პერს.</small></span>
+            </div>
           </div>
           <div class="tour-card-body">
             ${t.route ? `<div class="dt-route"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${t.route}</div>` : ''}
@@ -1141,18 +1229,14 @@
             <h3 class="tour-card-title">${t.name || 'უსახელო ტური'}</h3>
             ${t.desc ? `<p class="tour-card-desc">${t.desc}</p>` : ''}
             <div class="tour-card-meta">
-              ${dur.length ? `<span class="meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${dur.join(' / ')}</span>` : ''}
-              ${t.minGroup && t.maxGroup ? `<span class="meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>${t.minGroup}-${t.maxGroup} პერს.</span>` : ''}
+              ${dur.length ? `<span class="meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${dur.join(' / ')}</span>` : ''}
+              ${t.minGroup && t.maxGroup ? `<span class="meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>${t.minGroup}-${t.maxGroup} პერს.</span>` : ''}
             </div>
           </div>
           <div class="tour-card-footer">
-            <div class="tour-price">
-              <span class="tour-price-label">დან</span>
-              <span class="tour-price-value">$${t.price || '—'} <small>/ პერს.</small></span>
-            </div>
             <a href="tour.html?type=multi&id=${t.id}" class="btn-book">
-              სრულად
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <span>სრულად ნახვა</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
           </div>
         </div>`;
