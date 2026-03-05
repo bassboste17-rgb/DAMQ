@@ -55,10 +55,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Load Navbar + Footer, then Init ---------- */
   async function loadAndInit() {
-    // Load navbar
+    // Load navbar via fetch only if placeholder is empty (not pre-embedded)
     const navbarPlaceholder = document.getElementById('navbar-placeholder');
-    if (navbarPlaceholder) {
-      await loadComponent('navbar-placeholder', 'components/navbar.html');
+    if (navbarPlaceholder && !navbarPlaceholder.querySelector('.navbar')) {
+      await loadComponent('navbar-placeholder', '/components/navbar.html');
+    }
+
+    // Load footer via fetch only if placeholder is empty (not pre-embedded)
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    if (footerPlaceholder && !footerPlaceholder.querySelector('.footer')) {
+      await loadComponent('footer-placeholder', '/components/footer.html');
     }
 
     // Set active nav link based on current page
@@ -67,9 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Init navbar functionality
     initNavbar();
     initLangSwitcher();
-
-    // Load footer
-    await loadComponent('footer-placeholder', 'components/footer.html');
 
     // Apply translations to freshly loaded components
     const lang = localStorage.getItem('damq_lang') || 'ru';
