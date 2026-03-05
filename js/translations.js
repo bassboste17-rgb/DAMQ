@@ -93,7 +93,7 @@ const translations = {
   // ── CONTACT ──
   "contact.tag":        { ru: "Связаться с нами",  en: "Contact Us",       ka: "დაგვიკავშირდით" },
   "contact.title":      { ru: "Готовы к путешествию мечты?", en: "Ready for your dream trip?", ka: "მზად ხართ ოცნების მოგზაურობისთვის?" },
-  "contact.desc":       { ru: "Оставьте заявку, и мы свяжемся с вами в течение часа, чтобы помочь спланировать идеальное путешествие по Грузии.", en: "Leave a request and we will contact you within an hour to help plan the perfect trip to Georgia.", ka: "დატოვეთ მოთხოვნა და ჩვენ ერთ საათში დაგიკავშირდებით, რომ დაგეხმაროთ იდეალური მოგზაურობის დაგეგმვაში საქართველოში." },
+  "contact.desc":       { ru: "Оставьте заявку, и мы свяжемся с вами в течение часа, чтобы помочь спланир��вать идеальное путешествие по Грузии.", en: "Leave a request and we will contact you within an hour to help plan the perfect trip to Georgia.", ka: "დატოვეთ მოთხოვნა და ჩვენ ერთ საათში დაგიკავშირდებით, რომ დაგეხმაროთ იდეალური მოგზაურობის დაგეგმვაში საქართველოში." },
   "contact.address.title": { ru: "Адрес",   en: "Address",    ka: "მისამართი" },
   "contact.address":       { ru: "Тбилиси, ул. Руставели 24", en: "24 Rustaveli Ave, Tbilisi", ka: "თბილისი, რუსთაველის გამზ. 24" },
   "contact.phone.title":   { ru: "Телефон", en: "Phone",      ka: "ტელეფონი" },
@@ -239,7 +239,7 @@ const translations = {
   "services.faq.title":     { ru: "Частые вопросы",   en: "Frequently Asked", ka: "ხშირი კითხვები" },
   "services.faq.sub":       { ru: "Не нашли ответ — пишите напрямую, мы отвечаем быстро.", en: "Didn't find an answer — write to us directly, we respond quickly.", ka: "პასუხი ვერ იპოვეთ — პირდაპირ მოგვწერეთ, სწრაფად ვპასუხობთ." },
   "services.faq.q1":        { ru: "Нужна ли виза в Грузию?", en: "Do I need a visa for Georgia?", ka: "საჭიროა თუ არა ვიზა საქართველოში?" },
-  "services.faq.a1":        { ru: "Гражданам России, Украины, Беларуси, Казахстана и большинства стран СНГ — безвизовый въезд на 365 дней. Гражданам ЕС и США — аналогично.", en: "Citizens of Russia, Ukraine, Belarus, Kazakhstan and most CIS countries — visa-free entry for 365 days. EU and US citizens — similarly.", ka: "რუსეთის, უკრაინის, ბელარუსის, ყაზახეთის და დსთ-ს უმეტესი ქვეყნების მოქალაქეები — უვიზო შესვლა 365 დღით. ევროკავშირისა და აშშ-ის მოქალაქეები — ანალოგიურად." },
+  "services.faq.a1":        { ru: "Гражданам России, Украины, Беларуси, Казахстана и большинства стран СНГ — безвизовый въезд на 365 дней. Гражданам ЕС и США — аналогично.", en: "Citizens of Russia, Ukraine, Belarus, Kazakhstan and most CIS countries — visa-free entry for 365 days. EU and US citizens — similarly.", ka: "რუსეთის, უკრაინის, ბელარუსის, ყაზახეთის და დსთ-ს უმეტესი ქვეყნების მოქალაქეები — უვიზო შესვლა 365 დღით. ევროკ��ვშირისა და აშშ-ის მოქალაქეები — ანალოგიურად." },
   "services.faq.q2":        { ru: "Можно ли забронировать тур для группы?", en: "Can I book a tour for a group?", ka: "შესაძლებელია ჯგუფური ტურის დაჯავშნა?" },
   "services.faq.a2":        { ru: "Да! Работаем с группами от 1 до 50+ человек. Для больших групп — специальные условия и скидки. Свяжитесь с нами для расчёта.", en: "Yes! We work with groups from 1 to 50+ people. Special conditions and discounts for large groups. Contact us for a quote.", ka: "კი! ვმუშაობთ 1-დან 50+ ადამიანის ჯგუფებთან. დიდი ჯგუფებისთვის — სპეციალური პირობები და ფასდაკლებები. დაგვიკავშირდით გაანგარიშებისთვის." },
   "services.faq.q3":        { ru: "Какие способы оплаты принимаете?", en: "What payment methods do you accept?", ka: "რა გადახდის მეთოდებს იღებთ?" },
@@ -311,7 +311,7 @@ const translations = {
   "region.guria.desc":    { ru: "Чайные плантации, Уреки с магнитными песками", en: "Tea plantations, Ureki with magnetic sands", ka: "ჩაის პლანტაციები, ურეკი მაგნიტური ქვიშებით" },
   "region.guria.badge":   { ru: "Природа",          en: "Nature",           ka: "ბუნება" },
   "region.abkhazia":      { ru: "Абхазия",          en: "Abkhazia",         ka: "აფხაზეთი" },
-  "region.abkhazia.desc": { ru: "Историческая область Грузии, Новый Афон, озеро Рица", en: "Historic region of Georgia, New Athos, Lake Ritsa", ka: "საქართველოს ისტორიული მხარე, ახალი ათონი, რიწის ტბა" },
+  "region.abkhazia.desc": { ru: "Историческая область Грузии, Новый Афон, озеро Рица", en: "Historic region of Georgia, New Athos, Lake Ritsa", ka: "საქართველ��ს ისტორიული მხარე, ახალი ათონი, რიწის ტბა" },
   "region.abkhazia.badge":{ ru: "Историческая область", en: "Historic Region", ka: "ისტორიული მხარე" },
 
   // ── COUNTRIES for review form ──

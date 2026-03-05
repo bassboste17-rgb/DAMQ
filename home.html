@@ -390,7 +390,7 @@
       <div class="section-header animate-on-scroll">
         <div class="section-tag" data-i18n="tours.tag">Наши туры</div>
         <h2 class="section-title" id="toursTitle" data-i18n="tours.title.full">Полные пакеты туров</h2>
-        <p class="section-subtitle" data-i18n="tours.subtitle">Многодневные путешествия с проживанием, транспортом и полным сопровождением гида по лучшим направлениям Грузии</p>
+        <p class="section-subtitle" data-i18n="tours.subtitle" style="color: #1a1a2e; font-weight: 700;">Многодневные путешествия с проживанием, транспортом и полным сопровождением гида по лучшим направлениям Грузии</p>
       </div>
 
       <!-- Multi-day tours -->
@@ -572,7 +572,7 @@
       <div class="section-header animate-on-scroll">
         <div class="section-tag" data-i18n="reviews.tag">Отзывы</div>
         <h2 class="section-title" data-i18n="reviews.title">Что говорят наши клиенты</h2>
-        <p class="section-subtitle" data-i18n="reviews.subtitle">Реальные истории и впечатления путешественников, доверивших нам свой отдых</p>
+        <p class="section-subtitle" data-i18n="reviews.subtitle">Реальны�� истории и впечатления путешественников, доверивших нам свой отдых</p>
       </div>
       <div class="reviews-slider animate-on-scroll">
         <div class="reviews-track" id="reviewsTrack">
@@ -961,9 +961,12 @@
     /* ─── Normalize new-format tour to card data ─── */
     function normalizeTour(t, source) {
       const photos = toArray(t.photos);
+      const lang = getLang();
+      const _tr = (key) => window.t ? window.t(key, lang) : key;
       const dur = [];
-      if (t.days) dur.push(t.days + (t.days === 1 ? ' день' : t.days < 5 ? ' дня' : ' дней'));
-      if (t.nights) dur.push(t.nights + (t.nights === 1 ? ' ночь' : t.nights < 5 ? ' ночи' : ' ночей'));
+      if (t.days) dur.push(t.days + ' ' + (t.days === 1 ? _tr('detail.day') : t.days < 5 ? _tr('detail.days2') : _tr('detail.days5')));
+      if (t.nights) dur.push(t.nights + ' ' + (t.nights === 1 ? _tr('detail.night1') : t.nights < 5 ? _tr('detail.nights2') : _tr('detail.nights5')));
+      const groupStr = (t.minGroup && t.maxGroup) ? `${t.minGroup}-${t.maxGroup} ${_tr('detail.persons')}` : (t.group || '');
       return {
         id: t.id,
         _source: source,
@@ -979,7 +982,7 @@
         badge: t.badge || '',
         location: toArray(t.regions).join(', ') || t.location || '',
         duration: dur.join(' / ') || t.duration || '',
-        group: (t.minGroup && t.maxGroup) ? `${t.minGroup}-${t.maxGroup} чел.` : (t.group || ''),
+        group: groupStr,
         price: t.price || '',
         rating: t.rating || '',
         route: t.route || ''

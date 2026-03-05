@@ -441,23 +441,32 @@ document.addEventListener('DOMContentLoaded', () => {
       { lat: 43.0096, lng: 41.0230, titleKey: 'region.abkhazia', descKey: 'region.abkhazia.desc', badgeKey: 'region.abkhazia.badge', region: 'abkhazia', image: 'images/regions/abkhazia.jpg' }
     ];
 
-    const lang = window.currentLang || localStorage.getItem('damq_lang') || 'ru';
-    const _t = (key) => window.t ? window.t(key, lang) : key;
+    function getPopupHtml(loc) {
+      const curLang = window.currentLang || localStorage.getItem('damq_lang') || 'ru';
+      const tr = (key) => window.t ? window.t(key, curLang) : key;
+      return '<div class="map-popup">' +
+        '<div class="map-popup-img"><img src="' + loc.image + '" alt="' + tr(loc.titleKey) + '" loading="lazy"></div>' +
+        '<div class="map-popup-body">' +
+          '<h3 class="map-popup-title">' + tr(loc.titleKey) + '</h3>' +
+          '<p class="map-popup-desc">' + tr(loc.descKey) + '</p>' +
+          '<span class="map-popup-badge">' + tr(loc.badgeKey) + '</span>' +
+          '<a href="services.html" class="map-popup-link">' + tr('map.more') + ' &rarr;</a>' +
+        '</div>' +
+      '</div>';
+    }
 
+    const mapMarkers = [];
     locations.forEach(loc => {
       const marker = L.marker([loc.lat, loc.lng], { icon: regionIcon }).addTo(map);
-      marker.bindPopup(
-        '<div class="map-popup">' +
-          '<div class="map-popup-img"><img src="' + loc.image + '" alt="' + _t(loc.titleKey) + '" loading="lazy"></div>' +
-          '<div class="map-popup-body">' +
-            '<h3 class="map-popup-title">' + _t(loc.titleKey) + '</h3>' +
-            '<p class="map-popup-desc">' + _t(loc.descKey) + '</p>' +
-            '<span class="map-popup-badge">' + _t(loc.badgeKey) + '</span>' +
-            '<a href="services.html" class="map-popup-link">' + _t('map.more') + ' &rarr;</a>' +
-          '</div>' +
-        '</div>',
-        { maxWidth: 280, minWidth: 240, className: 'custom-popup' }
-      );
+      marker.bindPopup(getPopupHtml(loc), { maxWidth: 280, minWidth: 240, className: 'custom-popup' });
+      mapMarkers.push({ marker, loc });
+    });
+
+    // Re-bind popups when language changes
+    window.addEventListener('langChanged', function() {
+      mapMarkers.forEach(function(item) {
+        item.marker.setPopupContent(getPopupHtml(item.loc));
+      });
     });
 
     // Enable scroll zoom on focus
