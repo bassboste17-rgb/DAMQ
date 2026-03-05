@@ -905,7 +905,7 @@
       <div class="why-grid">
         <div class="why-item aos delay-1">
           <div class="why-number">8+</div>
-          <div class="why-title" data-i18n="services.why.1.title">Лет опыта</div>
+          <div class="why-title" data-i18n="services.why.1.title">��ет опыта</div>
           <div class="why-desc" data-i18n="services.why.1.desc">Работаем с туристами со всего мира с 2016 года</div>
         </div>
         <div class="why-item aos delay-2">
@@ -1055,6 +1055,19 @@
       return [];
     }
 
+    /* ─── localization helpers ─── */
+    function getLang() {
+      return window.currentLang || localStorage.getItem('damq_lang') || 'ru';
+    }
+    function localName(t) {
+      const lang = getLang();
+      return t['name_' + lang] || t.name || '';
+    }
+    function localDesc(t) {
+      const lang = getLang();
+      return t['desc_' + lang] || t.desc || '';
+    }
+
     /* Normalize new-format tour */
     function normalizeTour(t, source) {
       const photos = toArray(t.photos);
@@ -1065,7 +1078,9 @@
         id: t.id,
         _source: source,
         name: t.name || '',
+        name_ka: t.name_ka || '', name_ru: t.name_ru || '', name_en: t.name_en || '',
         desc: t.desc || '',
+        desc_ka: t.desc_ka || '', desc_ru: t.desc_ru || '', desc_en: t.desc_en || '',
         image: (photos.length ? (photos[0].url || photos[0].thumb) : t.image) || '',
         badge: t.badge || '',
         location: toArray(t.regions).join(', ') || t.location || '',
@@ -1105,8 +1120,8 @@
           </div>
           <div class="tour-card-body">
             ${t.location ? `<div class="tour-card-location"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${t.location}</div>` : ''}
-            <h3 class="tour-card-title">${t.name || 'Без названия'}</h3>
-            ${t.desc ? `<p class="tour-card-desc">${t.desc}</p>` : ''}
+            <h3 class="tour-card-title">${localName(t) || 'Без названия'}</h3>
+            ${localDesc(t) ? `<p class="tour-card-desc">${localDesc(t)}</p>` : ''}
             ${includes.length ? `<div class="tour-card-includes">${includes.map(i => `<span class="include-chip"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>${i}</span>`).join('')}</div>` : ''}
             <div class="tour-card-meta">
               ${t.duration ? `<span class="meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${t.duration}</span>` : ''}
@@ -1116,11 +1131,11 @@
           </div>
           <div class="tour-card-footer">
             <div class="tour-price">
-              <span class="tour-price-label">от</span>
-              <span class="tour-price-value">$${t.price || '—'} <small>/ чел.</small></span>
+              <span class="tour-price-label">${window.t ? window.t('tours.from', getLang()) : 'от'}</span>
+              <span class="tour-price-value">$${t.price || '—'} <small>${window.t ? window.t('tours.per.person', getLang()) : '/ чел.'}</small></span>
             </div>
             <span class="btn-book">
-              Подробнее
+              ${window.t ? window.t('tours.details', getLang()) : 'Подробнее'}
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </span>
           </div>

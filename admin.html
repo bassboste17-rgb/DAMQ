@@ -677,6 +677,39 @@
     }
 
     /* ═══════════════════════════════════════════
+       LANGUAGE TABS (Multi-lang inputs)
+    ═══════════════════════════════════════════ */
+    .lang-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 0.5rem;
+      background: #f5f3ee;
+      border-radius: 8px;
+      padding: 3px;
+    }
+    .lang-tab {
+      flex: 1;
+      padding: 0.4rem 0.6rem;
+      border: none;
+      background: transparent;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      color: #888;
+      transition: all 0.2s;
+    }
+    .lang-tab:hover { color: #555; }
+    .lang-tab.active {
+      background: var(--white);
+      color: var(--dark);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .lang-panel { display: none; }
+    .lang-panel.active { display: block; }
+
+    /* ═══════════════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════════════ */
     @media (max-width: 768px) {
@@ -1034,9 +1067,29 @@
       <form id="dayTourForm" class="form-grid">
         <input type="hidden" id="dtDocId">
 
-        <div class="fg full"><label>სახელი *</label><input type="text" id="dtName" placeholder="ტურის სახელი" required></div>
+        <div class="fg full">
+          <label>სახელი / Name / Название *</label>
+          <div class="lang-tabs" data-target="dtNameLang">
+            <button type="button" class="lang-tab active" data-lang="ka">KA</button>
+            <button type="button" class="lang-tab" data-lang="ru">RU</button>
+            <button type="button" class="lang-tab" data-lang="en">EN</button>
+          </div>
+          <div class="lang-panel active" data-lang="ka" data-group="dtNameLang"><input type="text" id="dtName_ka" placeholder="ტურის სახელი (ქართული)" required></div>
+          <div class="lang-panel" data-lang="ru" data-group="dtNameLang"><input type="text" id="dtName_ru" placeholder="Название тура (русский)"></div>
+          <div class="lang-panel" data-lang="en" data-group="dtNameLang"><input type="text" id="dtName_en" placeholder="Tour name (English)"></div>
+        </div>
 
-        <div class="fg full"><label>აღწერა *</label><textarea id="dtDesc" placeholder="ტურის აღწერა..." required></textarea></div>
+        <div class="fg full">
+          <label>აღწერა / Description / Описание *</label>
+          <div class="lang-tabs" data-target="dtDescLang">
+            <button type="button" class="lang-tab active" data-lang="ka">KA</button>
+            <button type="button" class="lang-tab" data-lang="ru">RU</button>
+            <button type="button" class="lang-tab" data-lang="en">EN</button>
+          </div>
+          <div class="lang-panel active" data-lang="ka" data-group="dtDescLang"><textarea id="dtDesc_ka" placeholder="ტურის აღწერა (ქართული)..." required></textarea></div>
+          <div class="lang-panel" data-lang="ru" data-group="dtDescLang"><textarea id="dtDesc_ru" placeholder="Описание тура (русский)..."></textarea></div>
+          <div class="lang-panel" data-lang="en" data-group="dtDescLang"><textarea id="dtDesc_en" placeholder="Tour description (English)..."></textarea></div>
+        </div>
 
         <div class="fg full"><label>მარშრუტი</label><input type="text" id="dtRoute" placeholder="თბილისი - მცხეთა - ჯვარი - ანანური"></div>
 
@@ -1054,7 +1107,7 @@
             <button type="button" class="region-chip" data-region="მცხეთა-მთიანეთი">მცხეთა-მთიანეთი</button>
             <button type="button" class="region-chip" data-region="შიდა ქართლი">შიდა ქართლი</button>
             <button type="button" class="region-chip" data-region="ქვემო ქართლი">ქვემო ქართლი</button>
-            <button type="button" class="region-chip" data-region="სამცხე-ჯავახეთი">სამცხე-ჯავახეთი</button>
+            <button type="button" class="region-chip" data-region="სამცხე-ჯავახეთი">სამცხე-���ავახეთი</button>
           </div>
         </div>
 
@@ -1126,9 +1179,29 @@
       <form id="multiDayTourForm" class="form-grid">
         <input type="hidden" id="mdtDocId">
 
-        <div class="fg full"><label>სახელი *</label><input type="text" id="mdtName" placeholder="ტურის სახელი" required></div>
+        <div class="fg full">
+          <label>სახელი / Name / Название *</label>
+          <div class="lang-tabs" data-target="mdtNameLang">
+            <button type="button" class="lang-tab active" data-lang="ka">KA</button>
+            <button type="button" class="lang-tab" data-lang="ru">RU</button>
+            <button type="button" class="lang-tab" data-lang="en">EN</button>
+          </div>
+          <div class="lang-panel active" data-lang="ka" data-group="mdtNameLang"><input type="text" id="mdtName_ka" placeholder="ტურის სახელი (ქართული)" required></div>
+          <div class="lang-panel" data-lang="ru" data-group="mdtNameLang"><input type="text" id="mdtName_ru" placeholder="Название тура (русский)"></div>
+          <div class="lang-panel" data-lang="en" data-group="mdtNameLang"><input type="text" id="mdtName_en" placeholder="Tour name (English)"></div>
+        </div>
 
-        <div class="fg full"><label>აღწერა *</label><textarea id="mdtDesc" placeholder="ტურის აღწერა..." required></textarea></div>
+        <div class="fg full">
+          <label>აღწერა / Description / Описание *</label>
+          <div class="lang-tabs" data-target="mdtDescLang">
+            <button type="button" class="lang-tab active" data-lang="ka">KA</button>
+            <button type="button" class="lang-tab" data-lang="ru">RU</button>
+            <button type="button" class="lang-tab" data-lang="en">EN</button>
+          </div>
+          <div class="lang-panel active" data-lang="ka" data-group="mdtDescLang"><textarea id="mdtDesc_ka" placeholder="ტურის აღწერა (ქართული)..." required></textarea></div>
+          <div class="lang-panel" data-lang="ru" data-group="mdtDescLang"><textarea id="mdtDesc_ru" placeholder="Описание тура (русский)..."></textarea></div>
+          <div class="lang-panel" data-lang="en" data-group="mdtDescLang"><textarea id="mdtDesc_en" placeholder="Tour description (English)..."></textarea></div>
+        </div>
 
         <div class="fg full"><label>მარშრუტი</label><input type="text" id="mdtRoute" placeholder="თბილისი - სვანეთი - ბათუმი - თბილისი"></div>
 
@@ -1347,6 +1420,21 @@
   });
 
   /* ── Close modals on overlay click ─�� */
+  /* ── Language tab switching ── */
+  document.querySelectorAll('.lang-tabs').forEach(tabBar => {
+    tabBar.querySelectorAll('.lang-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const group = tabBar.dataset.target;
+        const lang = tab.dataset.lang;
+        tabBar.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelectorAll(`.lang-panel[data-group="${group}"]`).forEach(p => {
+          p.classList.toggle('active', p.dataset.lang === lang);
+        });
+      });
+    });
+  });
+
   ['tourModalWrap','bookModalWrap','confirmWrap','dayTourModalWrap','multiDayTourModalWrap'].forEach(id => {
     document.getElementById(id).addEventListener('click', e => {
       if (e.target.id === id) document.getElementById(id).classList.remove('open');
@@ -1897,8 +1985,12 @@
     if (!t) return;
     document.getElementById('dayTourModalTitle').textContent = 'ტურის რედაქტირება';
     document.getElementById('dtDocId').value   = t.id;
-    document.getElementById('dtName').value    = t.name || '';
-    document.getElementById('dtDesc').value    = t.desc || '';
+    document.getElementById('dtName_ka').value = t.name_ka || t.name || '';
+    document.getElementById('dtName_ru').value = t.name_ru || '';
+    document.getElementById('dtName_en').value = t.name_en || '';
+    document.getElementById('dtDesc_ka').value = t.desc_ka || t.desc || '';
+    document.getElementById('dtDesc_ru').value = t.desc_ru || '';
+    document.getElementById('dtDesc_en').value = t.desc_en || '';
     document.getElementById('dtRoute').value   = t.route || '';
     document.getElementById('dtType').value    = t.type || 'ექ��კურსია';
     document.getElementById('dtPrice').value   = t.price || '';
@@ -1914,19 +2006,25 @@
 
   window.saveDayTour = async function() {
     const docId = document.getElementById('dtDocId').value;
-    const name  = document.getElementById('dtName').value.trim();
+    const name_ka = document.getElementById('dtName_ka').value.trim();
+    const name_ru = document.getElementById('dtName_ru').value.trim();
+    const name_en = document.getElementById('dtName_en').value.trim();
     const price = Number(document.getElementById('dtPrice').value);
     const minGroup = Number(document.getElementById('dtMinGroup').value);
     const maxGroup = Number(document.getElementById('dtMaxGroup').value);
-    if (!name || !price || !minGroup || !maxGroup) {
+    if (!name_ka || !price || !minGroup || !maxGroup) {
       toast('შეავსეთ ყველა სავალდებულო ველი', 'err');
       return;
     }
 
     const now = Date.now();
     const data = {
-      name,
-      desc:     document.getElementById('dtDesc').value.trim(),
+      name: name_ka,
+      name_ka, name_ru, name_en,
+      desc: document.getElementById('dtDesc_ka').value.trim(),
+      desc_ka: document.getElementById('dtDesc_ka').value.trim(),
+      desc_ru: document.getElementById('dtDesc_ru').value.trim(),
+      desc_en: document.getElementById('dtDesc_en').value.trim(),
       route:    document.getElementById('dtRoute').value.trim(),
       regions:  getSelectedRegions(),
       type:     document.getElementById('dtType').value,
@@ -2132,8 +2230,12 @@
     if (!t) return;
     document.getElementById('multiDayTourModalTitle').textContent = 'ტურის რედაქტირება';
     document.getElementById('mdtDocId').value   = t.id;
-    document.getElementById('mdtName').value    = t.name || '';
-    document.getElementById('mdtDesc').value    = t.desc || '';
+    document.getElementById('mdtName_ka').value = t.name_ka || t.name || '';
+    document.getElementById('mdtName_ru').value = t.name_ru || '';
+    document.getElementById('mdtName_en').value = t.name_en || '';
+    document.getElementById('mdtDesc_ka').value = t.desc_ka || t.desc || '';
+    document.getElementById('mdtDesc_ru').value = t.desc_ru || '';
+    document.getElementById('mdtDesc_en').value = t.desc_en || '';
     document.getElementById('mdtRoute').value   = t.route || '';
     document.getElementById('mdtType').value    = t.type || 'ექსკურსია';
     document.getElementById('mdtPrice').value   = t.price || '';
@@ -2149,19 +2251,25 @@
 
   window.saveMultiDayTour = async function() {
     const docId = document.getElementById('mdtDocId').value;
-    const name  = document.getElementById('mdtName').value.trim();
+    const name_ka = document.getElementById('mdtName_ka').value.trim();
+    const name_ru = document.getElementById('mdtName_ru').value.trim();
+    const name_en = document.getElementById('mdtName_en').value.trim();
     const price = Number(document.getElementById('mdtPrice').value);
     const minGroup = Number(document.getElementById('mdtMinGroup').value);
     const maxGroup = Number(document.getElementById('mdtMaxGroup').value);
-    if (!name || !price || !minGroup || !maxGroup) {
+    if (!name_ka || !price || !minGroup || !maxGroup) {
       toast('შეავსეთ ყველა სავალდებულო ველი', 'err');
       return;
     }
 
     const now = Date.now();
     const data = {
-      name,
-      desc:     document.getElementById('mdtDesc').value.trim(),
+      name: name_ka,
+      name_ka, name_ru, name_en,
+      desc: document.getElementById('mdtDesc_ka').value.trim(),
+      desc_ka: document.getElementById('mdtDesc_ka').value.trim(),
+      desc_ru: document.getElementById('mdtDesc_ru').value.trim(),
+      desc_en: document.getElementById('mdtDesc_en').value.trim(),
       route:    document.getElementById('mdtRoute').value.trim(),
       regions:  getMdtSelectedRegions(),
       type:     document.getElementById('mdtType').value,
