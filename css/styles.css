@@ -234,32 +234,23 @@ h1, h2, h3, h4, h5, h6 {
   border-color: rgba(201, 169, 110, 0.5);
 }
 
-.navbar-toggle.active .toggle-open {
-  display: none !important;
-}
-
-.navbar-toggle.active .toggle-close {
-  display: block !important;
-}
-
 /* Mobile Menu */
 .mobile-menu {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
   background: var(--color-primary);
-  z-index: 999;
+  z-index: 998;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
 .mobile-menu.active {
@@ -268,32 +259,28 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: auto;
 }
 
-/* Lock body scroll when mobile menu is open */
-body.menu-open {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-}
-
-/* Ensure navbar stays on top and has solid bg when menu is open */
-body.menu-open .navbar {
-  background: rgba(26, 26, 46, 1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-
 .mobile-menu-inner {
   text-align: center;
-  transform: translateY(30px);
+  width: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 100px 24px 60px;
+  transform: translateY(20px);
   opacity: 0;
-  transition: all 0.4s ease 0.15s;
-  padding: 100px 20px 40px;
+  transition: transform 0.35s ease 0.1s, opacity 0.35s ease 0.1s;
 }
 
 .mobile-menu.active .mobile-menu-inner {
   transform: translateY(0);
   opacity: 1;
+}
+
+/* Navbar solid bg when menu is active — override transparent/blur */
+.navbar.menu-active {
+  background: var(--color-primary) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 .mobile-links li {
@@ -2592,114 +2579,82 @@ body.menu-open .navbar {
   background: var(--color-offwhite);
 }
 
-.seasons-grid {
+.seasons-row {
   display: flex;
-  gap: 24px;
+  gap: 20px;
 }
 
 .season-card {
   flex: 1;
   background: var(--color-white);
   border-radius: var(--radius-lg);
-  padding: 36px 28px;
-  text-align: center;
-  box-shadow: var(--shadow-card);
-  border: 1px solid var(--color-light);
-  transition: all var(--transition);
-  position: relative;
   overflow: hidden;
+  border: 1px solid var(--accent-border, var(--color-light));
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.season-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  transition: height var(--transition);
-}
-
-.season-spring::before { background: #4ade80; }
-.season-summer::before { background: #f59e0b; }
-.season-autumn::before { background: #ef6c00; }
-.season-winter::before { background: #60a5fa; }
 
 .season-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
 }
 
-.season-card:hover::before {
+.season-card-stripe {
+  height: 4px;
+  background: var(--accent);
+  transition: height 0.3s ease;
+}
+
+.season-card:hover .season-card-stripe {
   height: 6px;
 }
 
-.season-card-icon {
-  width: 64px;
-  height: 64px;
+.season-card-body {
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.season-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  margin: 0 auto 20px;
-  transition: transform var(--transition);
+  margin: 0 auto 18px;
+  transition: transform 0.3s ease;
 }
 
-.season-spring .season-card-icon {
-  background: rgba(74, 222, 128, 0.12);
-  color: #22c55e;
-}
-
-.season-summer .season-card-icon {
-  background: rgba(245, 158, 11, 0.12);
-  color: #f59e0b;
-}
-
-.season-autumn .season-card-icon {
-  background: rgba(239, 108, 0, 0.12);
-  color: #ef6c00;
-}
-
-.season-winter .season-card-icon {
-  background: rgba(96, 165, 250, 0.12);
-  color: #60a5fa;
-}
-
-.season-card:hover .season-card-icon {
+.season-card:hover .season-icon-wrap {
   transform: scale(1.1);
 }
 
-.season-card-title {
+.season-name {
   font-family: var(--font-heading);
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--color-primary);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-.season-card-desc {
-  font-size: 14px;
+.season-text {
+  font-size: 13px;
+  line-height: 1.65;
   color: var(--color-text-light);
-  line-height: 1.7;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
-.season-card-months {
+.season-months {
   display: inline-block;
-  padding: 6px 16px;
-  background: var(--color-offwhite);
+  padding: 5px 14px;
   border-radius: 50px;
-  font-size: 12px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-size: 11px;
   font-weight: 600;
-  color: var(--color-text);
   letter-spacing: 0.5px;
 }
-
-.season-spring .season-card-months { background: rgba(74, 222, 128, 0.1); color: #16a34a; }
-.season-summer .season-card-months { background: rgba(245, 158, 11, 0.1); color: #d97706; }
-.season-autumn .season-card-months { background: rgba(239, 108, 0, 0.1); color: #e65100; }
-.season-winter .season-card-months { background: rgba(96, 165, 250, 0.1); color: #2563eb; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1200px) {
@@ -2711,13 +2666,6 @@ body.menu-open .navbar {
   }
   .tours-slider-arrow.arrow-right {
     right: -8px;
-  }
-  .seasons-grid {
-    flex-wrap: wrap;
-  }
-  .season-card {
-    flex: 1 1 calc(50% - 12px);
-    min-width: calc(50% - 12px);
   }
 }
 
@@ -2862,19 +2810,21 @@ body.menu-open .navbar {
   #georgia-map {
     height: 350px;
   }
-  .seasons-grid {
-    gap: 16px;
+  .seasons-row {
+    flex-wrap: wrap;
   }
   .season-card {
-    flex: 1 1 calc(50% - 8px);
-    min-width: calc(50% - 8px);
-    padding: 28px 20px;
+    flex: 1 1 calc(50% - 10px);
+    min-width: calc(50% - 10px);
   }
-  .season-card-title {
-    font-size: 18px;
+  .season-card-body {
+    padding: 24px 18px;
   }
-  .season-card-desc {
-    font-size: 13px;
+  .season-name {
+    font-size: 17px;
+  }
+  .season-text {
+    font-size: 12px;
   }
   .region-cards {
     grid-template-columns: 1fr 1fr;
@@ -3009,36 +2959,36 @@ body.menu-open .navbar {
   #georgia-map {
     height: 260px;
   }
-  .seasons-grid {
-    flex-direction: row;
-    flex-wrap: wrap;
+  .seasons-row {
     gap: 12px;
   }
   .season-card {
     flex: 1 1 calc(50% - 6px);
     min-width: calc(50% - 6px);
-    padding: 20px 14px;
   }
-  .season-card-icon {
-    width: 48px;
-    height: 48px;
+  .season-card-body {
+    padding: 18px 12px;
+  }
+  .season-icon-wrap {
+    width: 44px;
+    height: 44px;
     margin-bottom: 12px;
   }
-  .season-card-icon svg {
-    width: 24px;
-    height: 24px;
+  .season-icon-wrap svg {
+    width: 20px;
+    height: 20px;
   }
-  .season-card-title {
-    font-size: 16px;
-    margin-bottom: 8px;
+  .season-name {
+    font-size: 15px;
+    margin-bottom: 6px;
   }
-  .season-card-desc {
-    font-size: 12px;
+  .season-text {
+    font-size: 11px;
     margin-bottom: 12px;
   }
-  .season-card-months {
+  .season-months {
     font-size: 10px;
-    padding: 4px 12px;
+    padding: 4px 10px;
   }
   .region-cards {
     grid-template-columns: 1fr;

@@ -77,41 +77,36 @@ document.addEventListener('DOMContentLoaded', () => {
     handleScroll();
 
     // Mobile menu toggle
+    const openIcon = toggle ? toggle.querySelector('.toggle-open') : null;
+    const closeIcon = toggle ? toggle.querySelector('.toggle-close') : null;
+
+    function openMobileMenu() {
+      mobileMenu.classList.add('active');
+      navbar.classList.add('menu-active');
+      if (openIcon) openIcon.style.display = 'none';
+      if (closeIcon) closeIcon.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('active');
+      navbar.classList.remove('menu-active');
+      if (openIcon) openIcon.style.display = '';
+      if (closeIcon) closeIcon.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
     if (toggle && mobileMenu) {
       toggle.addEventListener('click', () => {
-        const isActive = mobileMenu.classList.contains('active');
-        
-        if (isActive) {
-          // Closing the menu — restore scroll position
-          const scrollY = document.body.style.top;
-          toggle.classList.remove('active');
-          mobileMenu.classList.remove('active');
-          document.body.classList.remove('menu-open');
-          document.body.style.top = '';
-          window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        if (mobileMenu.classList.contains('active')) {
+          closeMobileMenu();
         } else {
-          // Opening the menu — save scroll position and lock
-          const scrollY = window.scrollY;
-          toggle.classList.add('active');
-          mobileMenu.classList.add('active');
-          document.body.classList.add('menu-open');
-          document.body.style.top = `-${scrollY}px`;
+          openMobileMenu();
         }
       });
     }
 
     // Close mobile menu on link click
-    function closeMobileMenu() {
-      if (toggle && mobileMenu && mobileMenu.classList.contains('active')) {
-        const scrollY = document.body.style.top;
-        toggle.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.classList.remove('menu-open');
-        document.body.style.top = '';
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
-      }
-    }
-
     navLinks.forEach(link => {
       link.addEventListener('click', closeMobileMenu);
     });
