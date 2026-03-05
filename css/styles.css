@@ -1970,38 +1970,64 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-white);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
-  text-align: center;
-  padding: 2rem 1.5rem;
+  overflow: hidden;
   transition: transform var(--transition), box-shadow var(--transition);
   border: 1px solid var(--color-light);
 }
 
 .season-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   box-shadow: var(--shadow-md);
+}
+
+.season-card-img {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.season-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.season-card:hover .season-card-img img {
+  transform: scale(1.08);
+}
+
+.season-card-body {
+  padding: 1.4rem 1.3rem 1.5rem;
+  text-align: center;
 }
 
 .season-card-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 1rem;
-  background: rgba(201, 169, 110, 0.1);
+  width: 56px;
+  height: 56px;
+  margin: -44px auto 0.8rem;
+  background: var(--color-white);
   border-radius: 50%;
   color: var(--color-accent);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  border: 3px solid var(--color-white);
 }
 
 .season-card h4 {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--color-primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .season-card-desc {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: var(--color-text-light);
   line-height: 1.6;
   margin-bottom: 0.75rem;
@@ -2026,7 +2052,12 @@ h1, h2, h3, h4, h5, h6 {
   .season-card {
     flex: 1 1 calc(50% - 8px);
     max-width: none;
-    padding: 1.5rem 1rem;
+  }
+  .season-card-img {
+    height: 140px;
+  }
+  .season-card-body {
+    padding: 1.2rem 1rem 1.3rem;
   }
 }
 
@@ -2036,21 +2067,27 @@ h1, h2, h3, h4, h5, h6 {
   }
   .season-card {
     flex: 1 1 calc(50% - 6px);
-    padding: 1.2rem 0.8rem;
+  }
+  .season-card-img {
+    height: 110px;
+  }
+  .season-card-body {
+    padding: 1rem 0.7rem 1.1rem;
   }
   .season-card-icon {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
+    margin-top: -34px;
   }
   .season-card-icon svg {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
   }
   .season-card h4 {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   .season-card-desc {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
   }
 }
 
