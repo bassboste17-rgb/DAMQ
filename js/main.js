@@ -140,6 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!switcher || !toggle) return;
 
+    // Load saved language (default: ru)
+    const savedLang = localStorage.getItem('damq-lang') || 'ru';
+    setLanguage(savedLang);
+
     // Toggle dropdown
     toggle.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -157,15 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
     options.forEach(opt => {
       opt.addEventListener('click', () => {
         const lang = opt.getAttribute('data-lang');
-        options.forEach(o => o.classList.remove('active'));
-        opt.classList.add('active');
-        if (langLabel) langLabel.textContent = lang.toUpperCase();
+        setLanguage(lang);
         switcher.classList.remove('active');
-
-        // Sync mobile buttons
-        mobileBtns.forEach(btn => {
-          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-        });
       });
     });
 
@@ -173,17 +170,62 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const lang = btn.getAttribute('data-lang');
-        mobileBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        if (langLabel) langLabel.textContent = lang.toUpperCase();
-
-        // Sync desktop options
-        options.forEach(opt => {
-          opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
-        });
+        setLanguage(lang);
       });
     });
+
+    function setLanguage(lang) {
+      // Save preference
+      localStorage.setItem('damq-lang', lang);
+      window._currentLang = lang;
+
+      // Update UI buttons
+      options.forEach(o => o.classList.toggle('active', o.getAttribute('data-lang') === lang));
+      mobileBtns.forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === lang));
+      if (langLabel) langLabel.textContent = lang.toUpperCase();
+
+      // Update html lang attribute
+      document.documentElement.lang = lang === 'ka' ? 'ka' : lang === 'en' ? 'en' : 'ru';
+
+      // Apply translations
+      applyTranslations(lang);
+    }
   }
+
+  /* ---------- Apply Translations ---------- */
+  function applyTranslations(lang) {
+    if (typeof window.TRANSLATIONS === 'undefined') return;
+    const T = window.TRANSLATIONS;
+
+    // Translate text content
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (T[key] && T[key][lang]) {
+        // Check if translation contains HTML tags
+        if (T[key][lang].includes('<')) {
+          el.innerHTML = T[key][lang];
+        } else {
+          el.textContent = T[key][lang];
+        }
+      }
+    });
+
+    // Translate placeholders
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+      const key = el.getAttribute('data-i18n-ph');
+      if (T[key] && T[key][lang]) {
+        el.placeholder = T[key][lang];
+      }
+    });
+  }
+
+  // Expose globally so Firebase module scripts can call it after rendering dynamic content
+  window.applyTranslations = applyTranslations;
+  window.getCurrentLang = function() { return localStorage.getItem('damq-lang') || 'ru'; };
+  window.t = function(tour, field) {
+    const lang = window.getCurrentLang();
+    return tour[field + '_' + lang] || tour[field + '_ru'] || tour[field] || '';
+  };
 
   /* ---------- Scroll Animations ---------- */
   function initScrollAnimations() {
@@ -333,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { lat: 41.3780, lng: 43.4050, title: 'Самцхе-Джавахети', desc: 'Пещерный монастырь Вардзия, Боржоми, крепость Рабат', badge: 'История', region: 'samtskhe', image: 'images/regions/samtskhe.jpg' },
       { lat: 42.3450, lng: 43.9960, title: 'Шида Картли', desc: 'Гори, пещерный город Уплисцихе', badge: 'История', region: 'shida-kartli', image: 'images/regions/shida-kartli.jpg' },
       { lat: 41.4430, lng: 44.4870, title: 'Квемо Картли', desc: 'Дманиси, Болнисский Сион', badge: 'Наследие', region: 'kvemo-kartli', image: 'images/regions/kvemo-kartli.jpg' },
-      { lat: 42.6820, lng: 43.4270, title: 'Ра��а-Лечхуми', desc: 'Горное вино Хванчкара, озеро Шаори', badge: 'Горы', region: 'racha', image: 'images/regions/racha.jpg' },
+      { lat: 42.6820, lng: 43.4270, title: 'Ра��а-Лечхуми', desc: 'Гор��ое вино Хванчкара, озеро Шаори', badge: 'Горы', region: 'racha', image: 'images/regions/racha.jpg' },
       { lat: 41.9730, lng: 42.1110, title: 'Гурия', desc: 'Чайные плантации, Уреки с магнитными песками', badge: 'Природа', region: 'guria', image: 'images/regions/guria.jpg' },
       { lat: 43.0096, lng: 41.0230, title: 'Абхазия', desc: 'Историческая область Грузии, Новый Афон, озеро Рица', badge: 'Историческая область', region: 'abkhazia', image: 'images/regions/abkhazia.jpg' }
     ];
