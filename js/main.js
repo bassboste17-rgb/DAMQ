@@ -25,6 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load footer, then init everything else
   loadComponent('footer-placeholder', 'components/footer.html').then(() => {
+    // Re-apply translations to newly loaded footer
+    const lang = localStorage.getItem('damq_lang') || 'ru';
+    if (window.setLanguage) window.setLanguage(lang);
+
     initScrollAnimations();
     initReviewsSlider();
     initMap();
@@ -140,6 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!switcher || !toggle) return;
 
+    // Restore saved language
+    const savedLang = localStorage.getItem('damq_lang') || 'ru';
+    setLanguage(savedLang);
+
     // Toggle dropdown
     toggle.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -157,15 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
     options.forEach(opt => {
       opt.addEventListener('click', () => {
         const lang = opt.getAttribute('data-lang');
-        options.forEach(o => o.classList.remove('active'));
-        opt.classList.add('active');
-        if (langLabel) langLabel.textContent = lang.toUpperCase();
+        setLanguage(lang);
         switcher.classList.remove('active');
-
-        // Sync mobile buttons
-        mobileBtns.forEach(btn => {
-          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-        });
       });
     });
 
@@ -173,17 +174,68 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const lang = btn.getAttribute('data-lang');
-        mobileBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        if (langLabel) langLabel.textContent = lang.toUpperCase();
-
-        // Sync desktop options
-        options.forEach(opt => {
-          opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
-        });
+        setLanguage(lang);
       });
     });
   }
+
+  /* ---------- Translation Engine ---------- */
+  function setLanguage(lang) {
+    // Save preference
+    localStorage.setItem('damq_lang', lang);
+    window.currentLang = lang;
+
+    // Update lang label
+    const langLabel = document.getElementById('langLabel');
+    if (langLabel) langLabel.textContent = lang.toUpperCase();
+
+    // Sync desktop options
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+    });
+
+    // Sync mobile buttons
+    document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+
+    // Translate all elements with data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const val = window.t ? window.t(key, lang) : key;
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = val;
+      } else if (el.tagName === 'OPTION') {
+        el.textContent = val;
+      } else {
+        el.innerHTML = val;
+      }
+    });
+
+    // Translate placeholders with data-i18n-ph
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+      const key = el.getAttribute('data-i18n-ph');
+      const val = window.t ? window.t(key, lang) : key;
+      el.placeholder = val;
+    });
+
+    // Translate labels with data-i18n-label
+    document.querySelectorAll('[data-i18n-label]').forEach(el => {
+      const key = el.getAttribute('data-i18n-label');
+      const val = window.t ? window.t(key, lang) : key;
+      el.setAttribute('aria-label', val);
+    });
+
+    // Update HTML lang attribute
+    document.documentElement.lang = lang === 'ka' ? 'ka' : lang === 'en' ? 'en' : 'ru';
+
+    // Dispatch event for other scripts to listen
+    window.dispatchEvent(new CustomEvent('langChanged', { detail: { lang } }));
+  }
+
+  // Make setLanguage global
+  window.setLanguage = setLanguage;
+  window.currentLang = localStorage.getItem('damq_lang') || 'ru';
 
   /* ---------- Scroll Animations ---------- */
   function initScrollAnimations() {
