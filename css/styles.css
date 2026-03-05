@@ -105,7 +105,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 10px;
-  z-index: 1001;
+  z-index: 1002;
 }
 
 .navbar-logo .logo-text {
@@ -219,7 +219,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgba(201, 169, 110, 0.25);
   border-radius: 10px;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 1002;
   transition: all var(--transition);
 }
 
@@ -258,6 +258,8 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0;
   visibility: hidden;
   transition: all 0.4s ease;
+  /* Prevent scroll bleed on iOS */
+  overscroll-behavior: contain;
 }
 
 .mobile-menu.active {
@@ -1949,35 +1951,82 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   gap: 20px;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   margin-top: 2.5rem;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+
+.season-cards::-webkit-scrollbar {
+  display: none;
 }
 
 .season-card {
-  flex: 1 1 200px;
-  background: var(--color-white);
+  flex: 1 1 0;
+  min-width: 160px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(201, 169, 110, 0.2);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
   text-align: center;
-  padding: 1.5rem 1rem;
-  transition: transform var(--transition);
+  padding: 1.8rem 1rem 1.4rem;
+  transition: transform var(--transition), border-color var(--transition), background var(--transition);
 }
 
 .season-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  border-color: rgba(201, 169, 110, 0.5);
+  background: rgba(201, 169, 110, 0.08);
+}
+
+.season-card-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.6rem;
+  line-height: 1;
 }
 
 .season-card h4 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--color-primary);
-  margin-bottom: 0.5rem;
+  color: var(--color-white);
+  margin-bottom: 0.4rem;
+}
+
+.season-card p {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
 }
 
 @media (max-width: 768px) {
   .season-cards {
-    flex-direction: column;
-    align-items: center;
+    gap: 12px;
+    margin-top: 1.5rem;
+  }
+  .season-card {
+    min-width: 140px;
+    padding: 1.2rem 0.8rem 1rem;
+  }
+  .season-card-icon {
+    font-size: 1.8rem;
+  }
+  .season-card h4 {
+    font-size: 0.88rem;
+  }
+  .season-card p {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .season-cards {
+    gap: 10px;
+  }
+  .season-card {
+    min-width: 120px;
+    padding: 1rem 0.6rem 0.8rem;
   }
 }
 

@@ -86,7 +86,17 @@ document.addEventListener('DOMContentLoaded', () => {
       toggle.addEventListener('click', () => {
         toggle.classList.toggle('active');
         mobileMenu.classList.toggle('active');
-        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        const isOpen = mobileMenu.classList.contains('active');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+        // When opening the mobile menu, force scrolled style so navbar doesn't shift
+        if (isOpen) {
+          navbar.classList.add('scrolled');
+        } else {
+          // Re-evaluate scroll state when closing
+          if (window.scrollY <= 80) {
+            navbar.classList.remove('scrolled');
+          }
+        }
       });
     }
 
