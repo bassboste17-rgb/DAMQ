@@ -79,28 +79,46 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile menu toggle
     if (toggle && mobileMenu) {
       toggle.addEventListener('click', () => {
-        toggle.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        const isActive = mobileMenu.classList.contains('active');
+        
+        if (isActive) {
+          // Closing the menu — restore scroll position
+          const scrollY = document.body.style.top;
+          toggle.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          document.body.classList.remove('menu-open');
+          document.body.style.top = '';
+          window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        } else {
+          // Opening the menu — save scroll position and lock
+          const scrollY = window.scrollY;
+          toggle.classList.add('active');
+          mobileMenu.classList.add('active');
+          document.body.classList.add('menu-open');
+          document.body.style.top = `-${scrollY}px`;
+        }
       });
     }
 
     // Close mobile menu on link click
+    function closeMobileMenu() {
+      if (toggle && mobileMenu && mobileMenu.classList.contains('active')) {
+        const scrollY = document.body.style.top;
+        toggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        document.body.style.top = '';
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+
     navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        if (toggle) toggle.classList.remove('active');
-        if (mobileMenu) mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      });
+      link.addEventListener('click', closeMobileMenu);
     });
 
     // Close mobile menu on nav CTA click
     document.querySelectorAll('.mobile-cta, .btn-cta-nav').forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (toggle) toggle.classList.remove('active');
-        if (mobileMenu) mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      });
+      btn.addEventListener('click', closeMobileMenu);
     });
   }
 

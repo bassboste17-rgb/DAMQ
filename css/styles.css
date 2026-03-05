@@ -256,12 +256,31 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.4s ease;
+  pointer-events: none;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-menu.active {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
+}
+
+/* Lock body scroll when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+/* Ensure navbar stays on top and has solid bg when menu is open */
+body.menu-open .navbar {
+  background: rgba(26, 26, 46, 1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .mobile-menu-inner {
@@ -269,6 +288,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(30px);
   opacity: 0;
   transition: all 0.4s ease 0.15s;
+  padding: 100px 20px 40px;
 }
 
 .mobile-menu.active .mobile-menu-inner {
@@ -2567,6 +2587,120 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateX(0);
 }
 
+/* ---------- Seasons Section ---------- */
+.seasons-section {
+  background: var(--color-offwhite);
+}
+
+.seasons-grid {
+  display: flex;
+  gap: 24px;
+}
+
+.season-card {
+  flex: 1;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-light);
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.season-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  transition: height var(--transition);
+}
+
+.season-spring::before { background: #4ade80; }
+.season-summer::before { background: #f59e0b; }
+.season-autumn::before { background: #ef6c00; }
+.season-winter::before { background: #60a5fa; }
+
+.season-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.season-card:hover::before {
+  height: 6px;
+}
+
+.season-card-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  transition: transform var(--transition);
+}
+
+.season-spring .season-card-icon {
+  background: rgba(74, 222, 128, 0.12);
+  color: #22c55e;
+}
+
+.season-summer .season-card-icon {
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+}
+
+.season-autumn .season-card-icon {
+  background: rgba(239, 108, 0, 0.12);
+  color: #ef6c00;
+}
+
+.season-winter .season-card-icon {
+  background: rgba(96, 165, 250, 0.12);
+  color: #60a5fa;
+}
+
+.season-card:hover .season-card-icon {
+  transform: scale(1.1);
+}
+
+.season-card-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.season-card-desc {
+  font-size: 14px;
+  color: var(--color-text-light);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.season-card-months {
+  display: inline-block;
+  padding: 6px 16px;
+  background: var(--color-offwhite);
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: 0.5px;
+}
+
+.season-spring .season-card-months { background: rgba(74, 222, 128, 0.1); color: #16a34a; }
+.season-summer .season-card-months { background: rgba(245, 158, 11, 0.1); color: #d97706; }
+.season-autumn .season-card-months { background: rgba(239, 108, 0, 0.1); color: #e65100; }
+.season-winter .season-card-months { background: rgba(96, 165, 250, 0.1); color: #2563eb; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1200px) {
   .region-cards {
@@ -2577,6 +2711,13 @@ h1, h2, h3, h4, h5, h6 {
   }
   .tours-slider-arrow.arrow-right {
     right: -8px;
+  }
+  .seasons-grid {
+    flex-wrap: wrap;
+  }
+  .season-card {
+    flex: 1 1 calc(50% - 12px);
+    min-width: calc(50% - 12px);
   }
 }
 
@@ -2721,6 +2862,20 @@ h1, h2, h3, h4, h5, h6 {
   #georgia-map {
     height: 350px;
   }
+  .seasons-grid {
+    gap: 16px;
+  }
+  .season-card {
+    flex: 1 1 calc(50% - 8px);
+    min-width: calc(50% - 8px);
+    padding: 28px 20px;
+  }
+  .season-card-title {
+    font-size: 18px;
+  }
+  .season-card-desc {
+    font-size: 13px;
+  }
   .region-cards {
     grid-template-columns: 1fr 1fr;
     gap: 8px;
@@ -2853,6 +3008,37 @@ h1, h2, h3, h4, h5, h6 {
   }
   #georgia-map {
     height: 260px;
+  }
+  .seasons-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .season-card {
+    flex: 1 1 calc(50% - 6px);
+    min-width: calc(50% - 6px);
+    padding: 20px 14px;
+  }
+  .season-card-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+  }
+  .season-card-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  .season-card-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .season-card-desc {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  .season-card-months {
+    font-size: 10px;
+    padding: 4px 12px;
   }
   .region-cards {
     grid-template-columns: 1fr;
