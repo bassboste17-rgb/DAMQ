@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- close on any link / CTA click ---
-    document.querySelectorAll('.nav-link, .mobile-link, .mobile-cta, .btn-cta-nav').forEach(el => {
+    document.querySelectorAll('.nav-link, .mobile-link, .mobile-cta, .btn-cta-nav, .mobile-phone').forEach(el => {
       el.addEventListener('click', () => {
         if (menuIsOpen) closeMenu();
       });
