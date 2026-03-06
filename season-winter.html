@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Зима в Грузии | DAMQ Travel</title>
+  <meta name="description" content="Зимняя Грузия - горнолыжные курорты, термальные источники и новогодние праздники">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    :root {
+      --season-primary: #4a6fa5;
+      --season-light: #e8f4fc;
+      --season-accent: #87ceeb;
+      --season-dark: #1e3a5f;
+    }
+
+    .season-hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--season-dark) 0%, var(--season-primary) 100%);
+    }
+
+    .season-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .season-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.4;
+    }
+
+    .season-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(30,58,95,0.7) 0%, rgba(74,111,165,0.5) 50%, rgba(30,58,95,0.8) 100%);
+      z-index: 2;
+    }
+
+    .season-hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 900px;
+      padding: 120px 40px 80px;
+    }
+
+    .season-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 24px;
+      background: rgba(135,206,235,0.2);
+      border: 1px solid rgba(135,206,235,0.4);
+      border-radius: 50px;
+      color: var(--season-accent);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .season-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      animation: fadeUp 0.8s ease 0.2s backwards;
+    }
+
+    .season-hero-title em {
+      font-style: italic;
+      color: var(--season-accent);
+    }
+
+    .season-hero-subtitle {
+      font-size: clamp(18px, 2.5vw, 24px);
+      color: rgba(255,255,255,0.85);
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      animation: fadeUp 0.8s ease 0.4s backwards;
+    }
+
+    .season-months-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      animation: fadeUp 0.8s ease 0.6s backwards;
+    }
+
+    .season-months-badge svg { color: var(--season-accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .season-highlights { padding: 100px 0; background: var(--season-light); }
+    .season-container { max-width: 1340px; margin: 0 auto; padding: 0 40px; }
+    .season-section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+    .season-section-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--season-primary); margin-bottom: 16px; }
+    .season-section-tag::before, .season-section-tag::after { content: ''; width: 30px; height: 1px; background: var(--season-primary); }
+    .season-section-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 48px); color: var(--season-dark); margin-bottom: 16px; }
+    .season-section-subtitle { font-size: 17px; color: #5a5a5a; line-height: 1.7; }
+    .highlights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .highlight-card { background: #fff; border-radius: 20px; padding: 40px 32px; text-align: center; box-shadow: 0 4px 30px rgba(74,111,165,0.1); transition: all 0.35s ease; }
+    .highlight-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(74,111,165,0.15); }
+    .highlight-icon { width: 80px; height: 80px; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; background: var(--season-light); border-radius: 50%; color: var(--season-primary); }
+    .highlight-card h3 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--season-dark); margin-bottom: 12px; }
+    .highlight-card p { font-size: 15px; color: #666; line-height: 1.7; }
+
+    .season-activities { padding: 100px 0; background: #fff; }
+    .activities-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .activities-image { position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+    .activities-image img { width: 100%; height: 500px; object-fit: cover; }
+    .activities-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(74,111,165,0.3) 0%, transparent 60%); }
+    .activities-content h3 { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--season-dark); margin-bottom: 20px; }
+    .activities-content > p { font-size: 17px; color: #666; line-height: 1.8; margin-bottom: 32px; }
+    .activity-list { display: flex; flex-direction: column; gap: 20px; }
+    .activity-item { display: flex; align-items: flex-start; gap: 16px; padding: 20px; background: var(--season-light); border-radius: 16px; transition: all 0.3s ease; }
+    .activity-item:hover { background: #fff; box-shadow: 0 8px 30px rgba(74,111,165,0.12); }
+    .activity-item-icon { width: 48px; height: 48px; min-width: 48px; display: flex; align-items: center; justify-content: center; background: var(--season-primary); border-radius: 12px; color: #fff; }
+    .activity-item-text h4 { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: var(--season-dark); margin-bottom: 4px; }
+    .activity-item-text p { font-size: 14px; color: #666; }
+
+    .season-weather { padding: 80px 0; background: linear-gradient(135deg, var(--season-dark) 0%, var(--season-primary) 100%); }
+    .weather-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .weather-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 32px 24px; text-align: center; transition: all 0.3s ease; }
+    .weather-card:hover { background: rgba(255,255,255,0.15); transform: translateY(-4px); }
+    .weather-card h4 { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: var(--season-accent); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+    .weather-value { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 8px; }
+    .weather-label { font-size: 14px; color: rgba(255,255,255,0.7); }
+
+    .season-cta { padding: 100px 0; background: var(--season-light); text-align: center; }
+    .cta-content { max-width: 700px; margin: 0 auto; }
+    .cta-content h2 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 48px); color: var(--season-dark); margin-bottom: 20px; }
+    .cta-content p { font-size: 18px; color: #666; margin-bottom: 36px; line-height: 1.7; }
+    .btn-season { display: inline-flex; align-items: center; gap: 10px; padding: 18px 40px; background: var(--season-primary); color: #fff; font-size: 16px; font-weight: 600; border-radius: 50px; text-decoration: none; transition: all 0.35s ease; }
+    .btn-season:hover { background: var(--season-dark); transform: translateY(-2px); box-shadow: 0 12px 35px rgba(74,111,165,0.3); }
+    .btn-season-outline { background: transparent; border: 2px solid var(--season-primary); color: var(--season-dark); margin-left: 16px; }
+    .btn-season-outline:hover { background: var(--season-primary); color: #fff; }
+
+    .back-link { position: fixed; top: 100px; left: 40px; z-index: 100; display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-radius: 50px; color: var(--season-dark); font-size: 14px; font-weight: 500; text-decoration: none; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: all 0.3s ease; }
+    .back-link:hover { background: var(--season-primary); color: #fff; transform: translateX(-4px); }
+
+    @media (max-width: 1024px) { .highlights-grid { grid-template-columns: repeat(2, 1fr); } .weather-grid { grid-template-columns: repeat(2, 1fr); } .activities-grid { grid-template-columns: 1fr; gap: 40px; } }
+    @media (max-width: 768px) { .season-hero-content { padding: 100px 24px 60px; } .highlights-grid { grid-template-columns: 1fr; } .weather-grid { grid-template-columns: 1fr 1fr; } .back-link { top: auto; bottom: 24px; left: 24px; } .season-container { padding: 0 24px; } .btn-season-outline { margin-left: 0; margin-top: 16px; } }
+  </style>
+</head>
+<body>
+  <div id="navbar-placeholder"><nav class="navbar" id="navbar">
+  <div class="navbar-container">
+    <a href="home.html" class="navbar-logo">
+      <span class="logo-text">DAMQ</span>
+      <span class="logo-divider"></span>
+      <span class="logo-sub">TRAVEL</span>
+    </a>
+    <ul class="navbar-links" id="navLinks">
+      <li><a href="home.html" class="nav-link" data-nav="home" data-i18n="nav.home">Главная</a></li>
+      <li><a href="services.html" class="nav-link" data-nav="services" data-i18n="nav.services">Услуги</a></li>
+      <li><a href="blog.html" class="nav-link" data-nav="blog" data-i18n="nav.blog">Блог</a></li>
+      <li><a href="contact.html" class="nav-link" data-nav="contact" data-i18n="nav.contacts">Контакты</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-current" id="langToggle" aria-label="Change language">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span id="langLabel">RU</span>
+          <svg class="lang-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-option active" data-lang="ru"><span class="lang-flag">RU</span><span>Русский</span></button>
+          <button class="lang-option" data-lang="en"><span class="lang-flag">EN</span><span>English</span></button>
+          <button class="lang-option" data-lang="ka"><span class="lang-flag">KA</span><span>ქართული</span></button>
+        </div>
+      </div>
+      <a href="tel:+995555000000" class="navbar-phone">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>+995 555 000 000</span>
+      </a>
+      <a href="contact.html" class="btn-cta-nav" data-i18n="nav.book">Забронировать</a>
+      <button type="button" class="navbar-toggle" id="navToggle" aria-label="Toggle menu">
+        <svg class="toggle-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="toggle-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="18" y1="18" x2="6" y2="6"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul class="mobile-links">
+        <li><a href="home.html" class="mobile-link" data-nav="home" data-i18n="nav.home">Главная</a></li>
+        <li><a href="services.html" class="mobile-link" data-nav="services" data-i18n="nav.services">Услуги</a></li>
+        <li><a href="blog.html" class="mobile-link" data-nav="blog" data-i18n="nav.blog">Блог</a></li>
+        <li><a href="contact.html" class="mobile-link" data-nav="contact" data-i18n="nav.contacts">Контакты</a></li>
+      </ul>
+      <div class="mobile-lang-switcher">
+        <button class="mobile-lang-btn active" data-lang="ru">RU</button>
+        <button class="mobile-lang-btn" data-lang="en">EN</button>
+        <button class="mobile-lang-btn" data-lang="ka">KA</button>
+      </div>
+      <div class="mobile-menu-footer">
+        <a href="tel:+995555000000" class="mobile-phone">+995 555 000 000</a>
+        <a href="contact.html" class="btn-cta-nav mobile-cta" data-i18n="nav.book">Забронировать</a>
+      </div>
+    </div>
+  </div>
+</nav></div>
+
+  <a href="home.html#seasons" class="back-link">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    <span data-i18n="season.back">Назад</span>
+  </a>
+
+  <section class="season-hero">
+    <div class="season-hero-bg">
+      <img src="images/seasons/winter.jpg" alt="Зима в Грузии">
+    </div>
+    <div class="season-hero-overlay"></div>
+    <div class="season-hero-content">
+      <div class="season-badge">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/>
+        </svg>
+        <span data-i18n="seasons.winter.months">Декабрь - Февраль</span>
+      </div>
+      <h1 class="season-hero-title" data-i18n="season.winter.hero.title">Зимняя <em>Грузия</em></h1>
+      <p class="season-hero-subtitle" data-i18n="season.winter.hero.subtitle">Время горнолыжных приключений, термальных источников и новогодних праздников. Снежные вершины и тёплое гостеприимство.</p>
+      <div class="season-months-badge">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span data-i18n="season.winter.period">Декабрь - Февраль | Горнолыжный сезон</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="season-highlights">
+    <div class="season-container">
+      <div class="season-section-header">
+        <div class="season-section-tag" data-i18n="season.highlights.tag">Особенности сезона</div>
+        <h2 class="season-section-title" data-i18n="season.winter.highlights.title">Почему стоит приехать зимой</h2>
+        <p class="season-section-subtitle" data-i18n="season.winter.highlights.subtitle">Зима в Грузии — это горнолыжные курорты мирового класса, целебные источники и праздничная атмосфера</p>
+      </div>
+      <div class="highlights-grid">
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+          </div>
+          <h3 data-i18n="season.winter.highlight1.title">Гудаури и Бакуриани</h3>
+          <p data-i18n="season.winter.highlight1.desc">Современные горнолыжные курорты с отличными трассами</p>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+          </div>
+          <h3 data-i18n="season.winter.highlight2.title">Термальные источники</h3>
+          <p data-i18n="season.winter.highlight2.desc">Природные горячие источники для релаксации</p>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3 data-i18n="season.winter.highlight3.title">Новогодние праздники</h3>
+          <p data-i18n="season.winter.highlight3.desc">Традиционные грузинские праздники и застолья</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="season-activities">
+    <div class="season-container">
+      <div class="activities-grid">
+        <div class="activities-image">
+          <img src="images/seasons/winter.jpg" alt="Зимние активности в Грузии">
+        </div>
+        <div class="activities-content">
+          <h3 data-i18n="season.winter.activities.title">Чем заняться зимой</h3>
+          <p data-i18n="season.winter.activities.desc">Зима в Грузии предлагает идеальное сочетание активного отдыха и релаксации</p>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="activity-item-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+              </div>
+              <div class="activity-item-text">
+                <h4 data-i18n="season.winter.activity1.title">Горные лыжи</h4>
+                <p data-i18n="season.winter.activity1.desc">Катание на трассах Гудаури и Бакуриани</p>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-item-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20"/><path d="M2 12c2 2 4 3 6 3s4-1 6-3c2 2 4 3 6 3"/></svg>
+              </div>
+              <div class="activity-item-text">
+                <h4 data-i18n="season.winter.activity2.title">Термальные бани</h4>
+                <p data-i18n="season.winter.activity2.desc">Расслабление в серных банях Тбилиси</p>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-item-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+              </div>
+              <div class="activity-item-text">
+                <h4 data-i18n="season.winter.activity3.title">Культурные туры</h4>
+                <p data-i18n="season.winter.activity3.desc">Посещение древних монастырей без толп</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="season-weather">
+    <div class="season-container">
+      <div class="weather-grid">
+        <div class="weather-card">
+          <h4 data-i18n="season.weather.temp">Температура</h4>
+          <div class="weather-value">-5 / +8°</div>
+          <div class="weather-label" data-i18n="season.winter.weather.temp">В зависимости от региона</div>
+        </div>
+        <div class="weather-card">
+          <h4 data-i18n="season.winter.weather.snow">Снег</h4>
+          <div class="weather-value">2-4м</div>
+          <div class="weather-label" data-i18n="season.winter.weather.mountains">В горах</div>
+        </div>
+        <div class="weather-card">
+          <h4 data-i18n="season.winter.weather.slopes">Трассы</h4>
+          <div class="weather-value">70+</div>
+          <div class="weather-label" data-i18n="season.winter.weather.km">км трасс</div>
+        </div>
+        <div class="weather-card">
+          <h4 data-i18n="season.winter.weather.thermal">Термы</h4>
+          <div class="weather-value">40°</div>
+          <div class="weather-label" data-i18n="season.winter.weather.water">Вода круглый год</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="season-cta">
+    <div class="season-container">
+      <div class="cta-content">
+        <h2 data-i18n="season.winter.cta.title">Готовы к зимнему приключению?</h2>
+        <p data-i18n="season.winter.cta.desc">Забронируйте тур прямо сейчас и откройте для себя зимнюю Грузию с опытными гидами DAMQ Travel</p>
+        <div>
+          <a href="contact.html" class="btn-season" data-i18n="nav.book">Забронировать</a>
+          <a href="services.html" class="btn-season btn-season-outline" data-i18n="season.cta.tours">Смотреть туры</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"><footer class="footer">
+  <div class="footer-wave">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path d="M0,60 C360,120 1080,0 1440,60 L1440,120 L0,120 Z" fill="currentColor"/>
+    </svg>
+  </div>
+  <div class="footer-main">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="home.html" class="footer-logo">
+            <span class="logo-text">DAMQ</span>
+            <span class="logo-divider"></span>
+            <span class="logo-sub">TRAVEL</span>
+          </a>
+          <p class="footer-desc" data-i18n="footer.desc">Откройте для себя Грузию с DAMQ Travel — вашим надёжным партнёром в мире незабываемых путешествий.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" class="social-link" aria-label="Telegram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+            <a href="#" class="social-link" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+            <a href="#" class="social-link" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading" data-i18n="footer.nav">Навигация</h4>
+          <ul class="footer-list">
+            <li><a href="home.html" data-i18n="nav.home">Главная</a></li>
+            <li><a href="services.html" data-i18n="nav.services">Услуги</a></li>
+            <li><a href="home.html#tours" data-i18n="tours.tag">Наши туры</a></li>
+            <li><a href="blog.html" data-i18n="nav.blog">Блог</a></li>
+            <li><a href="contact.html" data-i18n="nav.contacts">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading" data-i18n="footer.popular">Популярные туры</h4>
+          <ul class="footer-list">
+            <li><a href="home.html#tours" data-i18n="footer.tour.tbilisi">Тбилиси и окрестности</a></li>
+            <li><a href="home.html#tours" data-i18n="footer.tour.kazbegi">Казбеги и горы</a></li>
+            <li><a href="home.html#tours" data-i18n="footer.tour.wine">Винный тур по Кахетии</a></li>
+            <li><a href="home.html#tours" data-i18n="footer.tour.svaneti">Сванетия</a></li>
+            <li><a href="home.html#tours" data-i18n="footer.tour.batumi">Батуми и побережье</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading" data-i18n="footer.contacts">Контакты</h4>
+          <ul class="footer-list footer-contacts">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Тбилиси, ул. Руставели 24</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+995555000000">+995 555 000 000</a></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:info@damq.ge">info@damq.ge</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-container">
+      <div class="footer-bottom-inner">
+        <p>&copy; 2026 <span data-i18n="footer.copyright">DAMQ Travel. Все права защищены.</span></p>
+        <div class="footer-legal">
+          <a href="#" data-i18n="footer.privacy">Политика конфиденциальности</a>
+          <a href="#" data-i18n="footer.terms">Условия использования</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer></div>
+
+  <a href="https://wa.me/995555000000" target="_blank" class="whatsapp-fab" aria-label="WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

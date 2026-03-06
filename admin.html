@@ -742,7 +742,7 @@
     </div>
 
     <nav class="sidebar-nav">
-      <div class="nav-label">Гла��ное</div>
+      <div class="nav-label">Главное</div>
       <button class="nav-item active" data-page="dashboard">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
         Дашборд
@@ -993,7 +993,7 @@
         </div>
         <div class="fg full"><label>Локация</label><input type="text" id="fLocation" placeholder="Сванетия, Грузия"></div>
         <div class="fg full">
-          <label>Чт�� включено (через запятую)</label>
+          <label>Что включено (через запятую)</label>
           <input type="text" id="fIncludes" placeholder="Гид, транспорт, входные билеты, обед">
         </div>
       </form>
@@ -1107,7 +1107,7 @@
             <button type="button" class="region-chip" data-region="მცხეთა-მთიანეთი">მცხეთა-მთიანეთი</button>
             <button type="button" class="region-chip" data-region="შიდა ქართლი">შიდა ქართლი</button>
             <button type="button" class="region-chip" data-region="ქვემო ქართლი">ქვემო ქართლი</button>
-            <button type="button" class="region-chip" data-region="სამცხე-ჯავახეთი">სამცხე-���ავახეთი</button>
+            <button type="button" class="region-chip" data-region="სამცხე-ჯავახეთი">სამცხე-ჯავახეთი</button>
           </div>
         </div>
 
@@ -1419,7 +1419,7 @@
     document.getElementById('sidebar').classList.toggle('open');
   });
 
-  /* ── Close modals on overlay click ─�� */
+  /* ── Close modals on overlay click ── */
   /* ── Language tab switching ── */
   document.querySelectorAll('.lang-tabs').forEach(tabBar => {
     tabBar.querySelectorAll('.lang-tab').forEach(tab => {
@@ -1441,7 +1441,7 @@
     });
   });
 
-  /* ══════���═══════ DASHBOARD ══════════════ */
+  /* ══════════════ DASHBOARD ══════════════ */
   async function loadDashboard() {
     try {
       const [tours, bookings, reviews, dayTours, multiDayTours] = await Promise.all([
@@ -1992,7 +1992,7 @@
     document.getElementById('dtDesc_ru').value = t.desc_ru || '';
     document.getElementById('dtDesc_en').value = t.desc_en || '';
     document.getElementById('dtRoute').value   = t.route || '';
-    document.getElementById('dtType').value    = t.type || 'ექ��კურსია';
+    document.getElementById('dtType').value    = t.type || 'ექსკურსია';
     document.getElementById('dtPrice').value   = t.price || '';
     document.getElementById('dtDays').value    = t.days ?? 1;
     document.getElementById('dtNights').value  = t.nights ?? 0;
@@ -2315,7 +2315,7 @@
     });
   };
 
-  /* ══════════════ CONFIRM ════��═════════ */
+  /* ══════════════ CONFIRM ══════════════ */
   let _confirmCb = null;
   function openConfirm(text, cb) {
     document.getElementById('confirmTxt').textContent = text;
