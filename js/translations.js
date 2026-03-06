@@ -175,7 +175,7 @@ const translations = {
   "services.empty.title":          { ru: "Туры не найдены",    en: "No tours found",    ka: "ტურები ვერ მოიძებნა" },
   "services.empty.desc":           { ru: "По выбранному фильтру туров пока нет. Попробуйте другую категорию.", en: "No tours match the selected filter. Try a different category.", ka: "შერჩეული ფილტრით ტურები არ მოიძებნა. სცადეთ სხვა კატეგორია." },
   "services.error.title":          { ru: "Ошибка загрузки",    en: "Loading Error",     ka: "ჩატვირთვის შეცდომა" },
-  "services.error.desc":           { ru: "Не удалось загрузить туры. Проверьте подключение или попробуйте позже.", en: "Failed to load tours. Check your connection or try again later.", ka: "ტურების ჩატვირთვა ვერ მოხერხდა. შეამოწმეთ კავშირი ან სცადეთ მოგვიანებით." },
+  "services.error.desc":           { ru: "Не удалось загрузить туры. Проверьте подключение или попробуйте позже.", en: "Failed to load tours. Check your connection or try again later.", ka: "ტურე��ის ჩატვირთვა ვერ მოხერხდა. შეამოწმეთ კავშირი ან სცადეთ მოგვიანებით." },
 
   // ── SERVICES FAQ missing ──
   "services.faq.q5":        { ru: "На каких языках работают гиды?", en: "What languages do the guides speak?", ka: "რა ენებზე მუშაობენ გიდები?" },
@@ -230,9 +230,9 @@ const translations = {
   "services.step2.title":   { ru: "Обсудим детали",     en: "Discuss Details",   ka: "დეტალების განხილვა" },
   "services.step2.desc":    { ru: "Свяжемся в течение часа и подберём оптимальный маршрут именно для вас.", en: "We'll contact you within an hour and select the optimal route for you.", ka: "ერთ საათში დაგიკავშირდებით და შეგირჩევთ ოპტიმალურ მარშრუტს." },
   "services.step3.title":   { ru: "Подтвердите бронь",  en: "Confirm Booking",   ka: "ჯავშნის დადასტურება" },
-  "services.step3.desc":    { ru: "Получите программу тура и внесите предоплату 30% — всё остальное берём на себя.", en: "Get the tour program and make a 30% advance payment — we'll take care of everything else.", ka: "მიიღეთ ტურის პროგრამა და შეიტანეთ 30% წინასწარი გადახდა — დანარჩენს ჩვენ ვაკეთებთ." },
+  "services.step3.desc":    { ru: "Получите детальную программу тура и подтвердите бронирование — всё остальное мы организуем за вас.", en: "Receive a detailed tour program and confirm your booking — we'll organize everything else for you.", ka: "მიიღეთ ტურის დეტალური პროგრამა და დაადასტურეთ ჯავშანი — დანარჩენს ჩვენ მოვაგვარებთ თქვენთვის." },
   "services.step4.title":   { ru: "Наслаждайтесь!",     en: "Enjoy!",            ka: "ისიამოვნეთ!" },
-  "services.step4.desc":    { ru: "Встречаем в точке старта и сопровождаем на протяжении всего путешествия.", en: "We meet you at the starting point and accompany throughout the entire trip.", ka: "გხვდებით საწყის წერტილში და თან გახლავთ მთელი მოგზაურობის განმავლობაში." },
+  "services.step4.desc":    { ru: "Встречаем вас в назначенном месте и сопровождаем на протяжении всего путешествия.", en: "We meet you at the designated location and accompany you throughout the entire journey.", ka: "შეგხვდებით დანიშნულ ადგილას და თან გახლავართ მთელი მოგზაურობის განმავლობაში." },
 
   // ── SERVICES - FAQ ──
   "services.faq.tag":       { ru: "FAQ",              en: "FAQ",              ka: "FAQ" },
@@ -242,9 +242,9 @@ const translations = {
   "services.faq.a1":        { ru: "Гражданам России, Украины, Беларуси, Казахстана и большинства стран СНГ — безвизовый въезд на 365 дней. Гражданам ЕС и США — аналогично.", en: "Citizens of Russia, Ukraine, Belarus, Kazakhstan and most CIS countries — visa-free entry for 365 days. EU and US citizens — similarly.", ka: "რუსეთის, უკრაინის, ბელარუსის, ყაზახეთის და დსთ-ს უმეტესი ქვეყნების მოქალაქეები — უვიზო შესვლა 365 დღით. ევროკავშირისა და აშშ-ის მოქალაქეები — ანალოგიურად." },
   "services.faq.q2":        { ru: "Можно ли забронировать тур для группы?", en: "Can I book a tour for a group?", ka: "შესაძლებელია ჯგუფური ტურის დაჯავშნა?" },
   "services.faq.a2":        { ru: "Да! Работаем с группами от 1 до 50+ человек. Для больших групп — специальные условия и скидки. Свяжитесь с нами для расчёта.", en: "Yes! We work with groups from 1 to 50+ people. Special conditions and discounts for large groups. Contact us for a quote.", ka: "კი! ვმუშაობთ 1-დან 50+ ადამიანის ჯგუფებთან. დიდი ჯგუფებისთვის — სპეციალური პირობები და ფასდაკლებები. დაგვიკავშირდით გაანგარიშებისთვის." },
-  "services.faq.q3":        { ru: "Какие способы оплаты принимаете?", en: "What payment methods do you accept?", ka: "რა გადახდის მეთოდებს იღებთ?" },
+  "services.faq.q3":        { ru: "Как происходит оплата тура?", en: "How does tour payment work?", ka: "როგორ ხდება ტურის გადახდა?" },
   "services.faq.a3":        { ru: "Наличные (USD, GEL, EUR), банковские переводы и карты Visa/Mastercard. Предоплата 30%, остаток — в день тура.", en: "Cash (USD, GEL, EUR), bank transfers and Visa/Mastercard cards. 30% advance payment, balance — on tour day.", ka: "ნაღდი ფული (USD, GEL, EUR), საბანკო გადარიცხვები და Visa/Mastercard ბარათები. 30% წინასწარი გადახდა, ნაშთი — ტურის დღეს." },
-  "services.faq.q4":        { ru: "Что при отмене тура?", en: "What about tour cancellation?", ka: "რა ხდება ტურის გაუქმების შემთხვევაში?" },
+  "services.faq.q4":        { ru: "Какова политика отмены бронирования?", en: "What is the cancellation policy?", ka: "როგორია ჯავშნის გაუქმების პოლიტიკა?" },
   "services.faq.a4":        { ru: "Отмена за 48+ часов — полный возврат. Менее 48 часов — возврат 50%. Отмена с нашей стороны — 100% возврат или перенос.", en: "Cancellation 48+ hours — full refund. Less than 48 hours — 50% refund. Cancellation on our part — 100% refund or reschedule.", ka: "გაუქმება 48+ საათით ადრე — სრული დაბრუნება. 48 საათზე ნაკლები — 50% დაბრუნება. გაუქმება ჩვენი მხრიდან — 100% დაბრუნება ან გადატანა." },
 
   // ── SERVICES CTA ──
@@ -306,7 +306,7 @@ const translations = {
   "region.kvemo.badge":   { ru: "Наследие",         en: "Heritage",         ka: "მემკვიდრეობა" },
   "region.racha":         { ru: "Рача-Лечхуми",     en: "Racha-Lechkhumi",  ka: "რაჭა-ლეჩხუმი" },
   "region.racha.desc":    { ru: "Горное вино Хванчкара, озеро Шаори", en: "Mountain wine Khvanchkara, Shaori lake", ka: "მთის ღვინო ხვანჭკარა, შაორის ტბა" },
-  "region.racha.badge":   { ru: "Горы",             en: "Mountains",        ka: "მთები" },
+  "region.racha.badge":   { ru: "Горы",             en: "Mountains",        ka: "მთე���ი" },
   "region.guria":         { ru: "Гурия",            en: "Guria",            ka: "გურია" },
   "region.guria.desc":    { ru: "Чайные плантации, Уреки с магнитными песками", en: "Tea plantations, Ureki with magnetic sands", ka: "ჩაის პლანტაციები, ურეკი მაგნიტური ქვიშებით" },
   "region.guria.badge":   { ru: "Природа",          en: "Nature",           ka: "ბუნება" },
