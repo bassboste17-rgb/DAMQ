@@ -337,7 +337,7 @@
         <div class="about-content animate-on-scroll delay-2">
           <div class="about-tag" data-i18n="about.tag">О компании</div>
           <h2 class="about-title" data-i18n="about.title">Ваш надёжный партнёр в мире путешествий</h2>
-          <p class="about-text" data-i18n="about.text1">DAMQ Travel — это команда профессионалов, влюблённых в Грузию. Мы создаём уникальные туристические маршруты, которые раскрывают красоту, культуру и гостеприимство этой удивительной страны.</p>
+          <p class="about-text" data-i18n="about.text1">DAMQ Travel — это команда профессионалов, влюблённых в Грузию. Мы создаём уникальные туристические маршруты, которые раск��ывают красоту, культуру и гостеприимство этой удивительной страны.</p>
           <p class="about-text" data-i18n="about.text2">Каждый наш тур — это тщательно продуманное путешествие с вниманием к деталям, комфортным транспортом и профессиональными гидами, говорящими на вашем языке.</p>
           <div class="about-features">
             <div class="about-feature">
@@ -1067,6 +1067,7 @@
       }
       const initials = ((r.firstName || '').charAt(0) + (r.lastName || '').charAt(0)).toUpperCase() || '?';
       const name = ((r.firstName || '') + ' ' + (r.lastName || '')).trim() || 'Аноним';
+      const countryTranslated = window.translateCountry ? window.translateCountry(r.country || '', getLang()) : (r.country || '');
       return `
         <div class="review-card">
           <div class="review-card-inner">
@@ -1077,7 +1078,7 @@
               <div class="review-avatar">${initials}</div>
               <div class="review-info">
                 <h4>${name}</h4>
-                <p>${r.country || ''}</p>
+                <p>${countryTranslated}</p>
               </div>
             </div>
           </div>

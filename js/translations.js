@@ -36,7 +36,7 @@ const translations = {
   // ── TOURS SECTION ──
   "tours.tag":            { ru: "Наши туры",           en: "Our Tours",          ka: "ჩვენი ტურები" },
   "tours.title.full":     { ru: "Полные пакеты туров", en: "Full Tour Packages", ka: "სრული ტურ-პაკეტები" },
-  "tours.subtitle":       { ru: "Комплексные путешествия на несколько дней — жильё, транспорт и гид уже включены, вам остаётся только наслаждаться", en: "All-inclusive multi-day adventures — accommodation, transport and guide already included, all you need to do is enjoy", ka: "რამდენიმე დღიანი კომპლექსური მოგზაურობები — საცხოვრებელი, ტრანსპორტი და გიდი უკვე შედის, თქვენ მხოლოდ სიამოვნების მიღება გრჩებათ" },
+  "tours.subtitle":       { ru: "Комплексные путешествия на несколько дней — жильё, транспорт и гид уже включены, вам остаётся только наслаждаться", en: "All-inclusive multi-day adventures — accommodation, transport and guide already included, all you need to do is enjoy", ka: "რამ���ენიმე დღიანი კომპლექსური მოგზაურობები — საცხოვრებელი, ტრანსპორტი და გიდი უკვე შედის, თქვენ მხოლოდ სიამოვნების მიღება გრჩებათ" },
   "tours.divider.title":  { ru: "Однодневные туры",    en: "Day Tours",          ka: "ერთდღიანი ტურები" },
   "tours.divider.desc":   { ru: "Увлекательные экскурсии на один день по лучшим направлениям Грузии", en: "Exciting one-day excursions to the best destinations in Georgia", ka: "საინტერესო ერთდღიანი ექსკურსიები საქართველოს საუკეთესო მიმართულებებით" },
   "tours.viewall":        { ru: "Все туры и услуги",   en: "All Tours & Services", ka: "ყველა ტური და სერვისი" },
@@ -47,6 +47,14 @@ const translations = {
   "tours.empty.multi":    { ru: "Многодневные туры скоро появятся", en: "Multi-day tours coming soon", ka: "მრავალდღიანი ტურები მალე გამოჩნდება" },
   "tours.empty.day":      { ru: "Однодневные туры скоро появятся",  en: "Day tours coming soon",      ka: "ერთდღიანი ტურები მალე გამოჩნდება" },
   "tours.empty.sub":      { ru: "Туры появятся после добавления в панели администратора", en: "Tours will appear after being added in the admin panel", ka: "ტურები გამოჩნდება ადმინ პანელში დამატების შემდეგ" },
+  "tours.days":           { ru: "дней",   en: "days",    ka: "დღე" },
+  "tours.day":            { ru: "день",   en: "day",     ka: "დღე" },
+  "tours.nights":         { ru: "ночей",  en: "nights",  ka: "ღამე" },
+  "tours.night":          { ru: "ночь",   en: "night",   ka: "ღამე" },
+  "tours.hours":          { ru: "часов",  en: "hours",   ka: "საათი" },
+  "tours.hour":           { ru: "час",    en: "hour",    ka: "საათი" },
+  "tours.people":         { ru: "чел.",   en: "people",  ka: "ადამ." },
+  "tours.person":         { ru: "чел.",   en: "person",  ka: "ადამ." },
 
   // ── MAP SECTION ──
   "map.tag":       { ru: "География",   en: "Geography",    ka: "გეოგრაფია" },
@@ -107,7 +115,7 @@ const translations = {
   "contact.form.phone":    { ru: "Телефон",   en: "Phone",      ka: "ტელეფონი" },
   "contact.form.email":    { ru: "Email",     en: "Email",      ka: "ელფოსტა" },
   "contact.form.tour":     { ru: "Интересующий тур",  en: "Tour of Interest",   ka: "საინტერესო ტური" },
-  "contact.form.tour.select": { ru: "Выберите тур",   en: "Select a tour",      ka: "აირჩიეთ ტური" },
+  "contact.form.tour.select": { ru: "Выберите тур",   en: "Select a tour",      ka: "��ირჩიეთ ტური" },
   "contact.form.message":  { ru: "Сообщение",  en: "Message",    ka: "შეტყობინება" },
   "contact.form.message.ph": { ru: "Расскажите о ваших пожеланиях...", en: "Tell us about your wishes...", ka: "მოგვიყევით თქვენი სურვილების შესახებ..." },
   "contact.form.submit":   { ru: "Отправить заявку",  en: "Send Request",   ka: "მოთხოვნის გაგზავნა" },
@@ -175,7 +183,7 @@ const translations = {
   "services.empty.title":          { ru: "Туры не найдены",    en: "No tours found",    ka: "ტურები ვერ მოიძებნა" },
   "services.empty.desc":           { ru: "По выбранному фильтру туров пока нет. Попробуйте другую категорию.", en: "No tours match the selected filter. Try a different category.", ka: "შერჩეული ფილტრით ტურები არ მოიძებნა. სცადეთ სხვა კატეგორია." },
   "services.error.title":          { ru: "Ошибка загрузки",    en: "Loading Error",     ka: "ჩატვირთვის შეცდომა" },
-  "services.error.desc":           { ru: "Не удалось загрузить туры. Проверьте подключение или попробуйте позже.", en: "Failed to load tours. Check your connection or try again later.", ka: "ტურების ჩატვირთვა ვერ მოხერხდა. შეამოწმეთ კავშირი ან სცადეთ მოგვიანებით." },
+  "services.error.desc":           { ru: "Не удалось загрузить туры. Проверьте подключение или попробуйте позже.", en: "Failed to load tours. Check your connection or try again later.", ka: "ტურე���ის ჩატვირთვა ვერ მოხერხდა. შეამოწმეთ კავშირი ან სცადეთ მოგვიანებით." },
 
   // ── SERVICES FAQ missing ──
   "services.faq.q5":        { ru: "На каких языках работают гиды?", en: "What languages do the guides speak?", ka: "რა ენებზე მუშაობენ გიდები?" },
@@ -239,7 +247,7 @@ const translations = {
   "services.faq.title":     { ru: "Частые вопросы",   en: "Frequently Asked", ka: "ხშირი კითხვები" },
   "services.faq.sub":       { ru: "Не нашли ответ — пишите напрямую, мы отвечаем быстро.", en: "Didn't find an answer — write to us directly, we respond quickly.", ka: "პასუხი ვერ იპოვეთ — პირდაპირ მოგვწერეთ, სწრაფად ვპასუხობთ." },
   "services.faq.q1":        { ru: "Нужна ли виза в Грузию?", en: "Do I need a visa for Georgia?", ka: "საჭიროა თუ არა ვიზა საქართველოში?" },
-  "services.faq.a1":        { ru: "Гражданам России, Украины, Беларуси, Казахстана и большинства стран СНГ — безвизовый въезд на 365 дней. Гражданам ЕС и США — аналогично.", en: "Citizens of Russia, Ukraine, Belarus, Kazakhstan and most CIS countries — visa-free entry for 365 days. EU and US citizens — similarly.", ka: "რუსეთის, უკრაინის, ბელარუსის, ყაზახეთის და დსთ-ს უმეტესი ქვეყნების მოქალაქეები — უვიზო შესვლა 365 დღით. ევროკავშირისა და აშშ-ის მოქალაქეები — ანალოგიურად." },
+  "services.faq.a1":        { ru: "Гражданам России, Украины, Белару��и, Казахстана и большинства стран СНГ — безвизовый въезд на 365 дней. Гражданам ЕС и США — аналогично.", en: "Citizens of Russia, Ukraine, Belarus, Kazakhstan and most CIS countries — visa-free entry for 365 days. EU and US citizens — similarly.", ka: "რუსეთის, უკრაინის, ბელარუსის, ყაზახეთის და დსთ-ს უმეტესი ქვეყნების მოქალაქეები — უვიზო შესვლა 365 დღით. ევროკავშირისა და აშშ-ის მოქალაქეები — ანალოგიურად." },
   "services.faq.q2":        { ru: "Можно ли забронировать тур для группы?", en: "Can I book a tour for a group?", ka: "შესაძლებელია ჯგუფური ტურის დაჯავშნა?" },
   "services.faq.a2":        { ru: "Да! Работаем с группами от 1 до 50+ человек. Для больших групп — специальные условия и скидки. Свяжитесь с нами для расчёта.", en: "Yes! We work with groups from 1 to 50+ people. Special conditions and discounts for large groups. Contact us for a quote.", ka: "კი! ვმუშაობთ 1-დან 50+ ადამიანის ჯგუფებთან. დიდი ჯგუფებისთვის — სპეციალური პირობები და ფასდაკლებები. დაგვიკავშირდით გაანგარიშებისთვის." },
   "services.faq.q3":        { ru: "Можно ли изменить маршрут тура?", en: "Can I customize the tour itinerary?", ka: "შესაძლებელია ტურის მარშრუტის შეცვლა?" },
@@ -264,7 +272,7 @@ const translations = {
   "blog.cat.cities":    { ru: "Города",  en: "Cities",       ka: "ქალაქები" },
   "blog.article1.title":  { ru: "10 причин посетить Сванетию этим летом", en: "10 Reasons to Visit Svaneti This Summer", ka: "10 მიზეზი, რატომ უნდა ეწვიოთ სვანეთს ამ ზაფხულს" },
   "blog.article1.desc":   { ru: "Сванетия — это горный рай с средневековыми башнями, ледниками и невероятными пейзажами. Узнайте, почему этот регион стоит включить в ваш маршрут.", en: "Svaneti is a mountain paradise with medieval towers, glaciers and incredible landscapes. Find out why this region is worth including in your itinerary.", ka: "სვანეთი მთის სამოთხეა შუასაუკუნეების კოშკებით, მყინვარებითა და წარმოუდგენელი პეიზაჟებით. გაიგეთ, რატომ ღირს ამ რეგიონის თქვენს მარშრუტში ჩართვა." },
-  "blog.article2.title":  { ru: "Гид по грузинскому вину: от Саперави до Хванчкары", en: "Guide to Georgian Wine: From Saperavi to Khvanchkara", ka: "ქართული ღვინის გიდი: საფერავიდან ხვანჭკარამდე" },
+  "blog.article2.title":  { ru: "Гид по грузинскому вину: от Саперави до Хванчкары", en: "Guide to Georgian Wine: From Saperavi to Khvanchkara", ka: "ქართული ღვინის გიდ��: საფერავიდან ხვანჭკარამდე" },
   "blog.article2.desc":   { ru: "Грузия — родина виноделия с 8000-летней историей. Расскажем о главных сортах, которые стоит попробовать в вашем путешествии.", en: "Georgia is the birthplace of winemaking with an 8000-year history. We'll tell you about the main varieties worth trying on your trip.", ka: "საქართველო მეღვინეობის სამშობლოა 8000 წლიანი ისტორიით. მოგიყვებით მთავარი ჯიშების შესახებ, რომლებიც მოგზაურობაში ღირს დააგემოვნოთ." },
   "blog.article3.title":  { ru: "Тбилиси за 48 часов: идеальный маршрут", en: "Tbilisi in 48 Hours: The Perfect Itinerary", ka: "თბილისი 48 საათში: იდეალური მარშრუტი" },
   "blog.article3.desc":   { ru: "Как провести два дня в столице Грузии с максимальной пользой — от старого города до современных кварталов.", en: "How to spend two days in the capital of Georgia most effectively — from the old town to modern districts.", ka: "როგორ გაატაროთ ორი დღე საქართველოს დედაქალაქში მაქსიმალური სარგებლით — ძველი ქალაქიდან თანამედროვე კვარტლებამდე." },
@@ -420,7 +428,7 @@ const translations = {
   "season.autumn.activity2.title":  { ru: "Дегустация вин",               en: "Wine Tasting",                 ka: "ღვინის დეგუსტაცია" },
   "season.autumn.activity2.desc":   { ru: "Посещение виноделен Кахетии и дегустация молодого вина", en: "Visiting Kakheti wineries and tasting young wine", ka: "კახეთის მარნების მონახულება და ახალგაზრდა ღვინის დეგუსტაცია" },
   "season.autumn.activity3.title":  { ru: "Фототуры",                     en: "Photo Tours",                  ka: "ფოტოტურები" },
-  "season.autumn.activity3.desc":   { ru: "Уникальные осенние пейзажи для фотографий", en: "Unique autumn landscapes for photography", ka: "უნიკალური შემოდგომის პეიზაჟები ფოტოგრაფიისთვის" },
+  "season.autumn.activity3.desc":   { ru: "Уникальные осенние пейзажи для фот��графий", en: "Unique autumn landscapes for photography", ka: "უნიკალური შემოდგომის პეიზაჟები ფოტოგრაფიისთვის" },
   "season.autumn.weather.temp":     { ru: "Тепло и комфортно",            en: "Warm and comfortable",         ka: "თბილი და კომფორტული" },
   "season.autumn.weather.harvest":  { ru: "Ртвели",                       en: "Rtveli",                       ka: "რთველი" },
   "season.autumn.weather.wine":     { ru: "Сентябрь - Октябрь",           en: "September - October",          ka: "სექტემბერი - ოქტომბერი" },
@@ -440,7 +448,7 @@ const translations = {
   "season.winter.highlight3.title": { ru: "Новогодние праздники",         en: "New Year Celebrations",        ka: "საახალწლო დღესასწაულები" },
   "season.winter.highlight3.desc":  { ru: "Традиционные грузинские праздники и застолья", en: "Traditional Georgian holidays and feasts", ka: "ტრადიციული ქართული დღესასწაულები და სუფრა" },
   "season.winter.activities.title": { ru: "Чем заняться зимой",           en: "What to Do in Winter",         ka: "რა გააკეთოთ ზამთარში" },
-  "season.winter.activities.desc":  { ru: "Зима в Грузии предлагает идеальное сочетание активного отдыха и релаксации", en: "Winter in Georgia offers the perfect combination of active recreation and relaxation", ka: "ზამთარი საქართველოში გთავაზობთ აქტიური დასვენებისა და რელაქსაციის იდეალურ შერწყმას" },
+  "season.winter.activities.desc":  { ru: "Зима в Грузии предлагает идеальное сочетание активного отдыха �� релаксации", en: "Winter in Georgia offers the perfect combination of active recreation and relaxation", ka: "ზამთარი საქართველოში გთავაზობთ აქტიური დასვენებისა და რელაქსაციის იდეალურ შერწყმას" },
   "season.winter.activity1.title":  { ru: "Горные лыжи",                  en: "Skiing",                       ka: "სათხილამურო სპორტი" },
   "season.winter.activity1.desc":   { ru: "Катание на трассах Гудаури и Бакуриани", en: "Skiing on Gudauri and Bakuriani slopes", ka: "თხილამურებით სრიალი გუდაურისა და ბაკურიანის ტრასებზე" },
   "season.winter.activity2.title":  { ru: "Термальные бани",              en: "Thermal Baths",                ka: "თერმული აბანოები" },
@@ -466,6 +474,55 @@ function t(key, lang) {
   return entry[lang] || entry['ru'] || key;
 }
 
+// Helper: translate country name from Russian to current language
+function translateCountry(countryRu, lang) {
+  const countryMap = {
+    'Россия': 'country.russia',
+    'Украина': 'country.ukraine',
+    'Беларусь': 'country.belarus',
+    'Казахстан': 'country.kazakhstan',
+    'Грузия': 'country.georgia',
+    'Армения': 'country.armenia',
+    'Азербайджан': 'country.azerbaijan',
+    'Узбекистан': 'country.uzbekistan',
+    'Германия': 'country.germany',
+    'Франция': 'country.france',
+    'Израиль': 'country.israel',
+    'Турция': 'country.turkey',
+    'США': 'country.usa',
+    'Другая': 'country.other'
+  };
+  const key = countryMap[countryRu];
+  if (key) return t(key, lang);
+  return countryRu;
+}
+
+// Helper: translate tour duration strings like "4 дня / 3 ночи" or "8 часов"
+function translateDuration(durationRu, lang) {
+  if (!durationRu || lang === 'ru') return durationRu;
+  return durationRu
+    .replace(/(\d+)\s*дней/gi, (m, n) => n + ' ' + t('tours.days', lang))
+    .replace(/(\d+)\s*дня/gi, (m, n) => n + ' ' + t('tours.days', lang))
+    .replace(/(\d+)\s*день/gi, (m, n) => n + ' ' + t('tours.day', lang))
+    .replace(/(\d+)\s*ночей/gi, (m, n) => n + ' ' + t('tours.nights', lang))
+    .replace(/(\d+)\s*ночи/gi, (m, n) => n + ' ' + t('tours.nights', lang))
+    .replace(/(\d+)\s*ночь/gi, (m, n) => n + ' ' + t('tours.night', lang))
+    .replace(/(\d+)\s*часов/gi, (m, n) => n + ' ' + t('tours.hours', lang))
+    .replace(/(\d+)\s*часа/gi, (m, n) => n + ' ' + t('tours.hours', lang))
+    .replace(/(\d+)\s*час/gi, (m, n) => n + ' ' + t('tours.hour', lang));
+}
+
+// Helper: translate group size strings like "1-14 чел."
+function translateGroup(groupRu, lang) {
+  if (!groupRu || lang === 'ru') return groupRu;
+  return groupRu
+    .replace(/чел\./gi, t('tours.people', lang))
+    .replace(/человек/gi, t('tours.people', lang));
+}
+
 // Make globally available
 window.translations = translations;
 window.t = t;
+window.translateCountry = translateCountry;
+window.translateDuration = translateDuration;
+window.translateGroup = translateGroup;
