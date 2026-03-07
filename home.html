@@ -171,6 +171,22 @@
       margin: 0;
     }
 
+    /* ── Featured Badge for Multi-day Tours ── */
+    .tour-card-badge.featured {
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d2d4a 100%) !important;
+      color: #fff !important;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      box-shadow: 0 4px 16px rgba(26, 26, 46, 0.3);
+    }
+    .tour-card-badge.featured svg {
+      width: 14px;
+      height: 14px;
+      stroke: #fff;
+    }
+
     /* ── Floating WhatsApp btn ── */
     .whatsapp-fab {
       position: fixed;
@@ -893,6 +909,8 @@
 
     /* ─── helpers ─── */
     function tourCardHTML(t, idx) {
+      const lang = getLang();
+      const featuredText = window.t ? window.t('tours.featured', lang) : 'Рекомендуем';
       const delay = (idx % 3) * 0.08;
       return `
         <div class="tour-card tour-card-anim" style="animation-delay:${delay}s">
@@ -901,7 +919,7 @@
               ? `<img src="${t.image}" alt="${t.name||''}" loading="lazy" onerror="this.style.display='none`
               : `<div style="height:220px;background:linear-gradient(135deg,#1a1a1a,#2a2a2a);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15)"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>`
             }
-            ${t.badge ? `<span class="tour-card-badge">${t.badge}</span>` : ''}
+            ${t.featured && t.type === 'multi' ? `<span class="tour-card-badge featured"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${featuredText}</span>` : (t.badge ? `<span class="tour-card-badge">${t.badge}</span>` : '')}
             <button class="tour-card-save" aria-label="Сохранить тур">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </button>
@@ -929,16 +947,15 @@
     }
 
     function featuredHTML(t) {
+      const lang = getLang();
+      const featuredText = window.t ? window.t('tours.featured', lang) : 'Рекомендуем';
       return `
         <div class="tour-featured tour-card-anim">
           <div class="tour-featured-image">
             ${t.image ? `<img src="${t.image}" alt="${t.name||''}">` : ''}
+            <span class="tour-card-badge featured"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${featuredText}</span>
           </div>
           <div class="tour-featured-content">
-            <div class="tour-featured-tag">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              ${t.badge || 'Рекомендуем'}
-            </div>
             <h3 class="tour-featured-title">${localName(t) || 'Без названия'}</h3>
             <p class="tour-featured-desc">${truncate(localDesc(t), 200)}</p>
             <div class="tour-featured-details">
@@ -964,6 +981,7 @@
       const lang = getLang();
       const _tr = (key) => window.t ? window.t(key, lang) : key;
       const dur = [];
+      const regions = toArray(t.regions).map(r => window.translateRegion ? window.translateRegion(r, lang) : r);
       if (t.days) dur.push(t.days + ' ' + (t.days === 1 ? _tr('detail.day') : t.days < 5 ? _tr('detail.days2') : _tr('detail.days5')));
       if (t.nights) dur.push(t.nights + ' ' + (t.nights === 1 ? _tr('detail.night1') : t.nights < 5 ? _tr('detail.nights2') : _tr('detail.nights5')));
       const groupStr = (t.minGroup && t.maxGroup) ? `${t.minGroup}-${t.maxGroup} ${_tr('detail.persons')}` : (t.group || '');
@@ -980,7 +998,7 @@
         desc_en: t.desc_en || '',
         image: (photos.length ? (photos[0].url || photos[0].thumb) : t.image) || '',
         badge: t.badge || '',
-        location: toArray(t.regions).join(', ') || t.location || '',
+        location: regions.join(', ') || t.location || '',
         duration: dur.join(' / ') || t.duration || '',
         group: groupStr,
         price: t.price || '',
@@ -990,34 +1008,33 @@
     }
 
     /* ─── load tours from dayTours + multiDayTours ─── */
+    let rawDayTours = [], rawMultiTours = [], oldTours = [];
+
     try {
-      const [rawDayTours, rawMultiTours, oldTours] = await Promise.all([
+      [rawDayTours, rawMultiTours, oldTours] = await Promise.all([
         rtdbGetAll('dayTours'),
         rtdbGetAll('multiDayTours'),
         rtdbGetAll('tours')
       ]);
 
-      const multiTours = rawMultiTours.map(t => normalizeTour(t, 'multiDayTours'));
-      const dayTours   = rawDayTours.map(t => normalizeTour(t, 'dayTours'));
-
-      // Fallback: also include old 'tours' if new collections are empty
-      if (multiTours.length === 0 && oldTours.filter(t => t.type === 'multi').length > 0) {
-        oldTours.filter(t => t.type === 'multi').forEach(t => multiTours.push({...t, _source: 'tours'}));
-      }
-      if (dayTours.length === 0 && oldTours.filter(t => t.type !== 'multi').length > 0) {
-        oldTours.filter(t => t.type !== 'multi').forEach(t => dayTours.push({...t, _source: 'tours'}));
-      }
-
-      // Store for re-render on language change
-      window._cachedMultiTours = multiTours;
-      window._cachedDayTours = dayTours;
-
       function renderTourGrids() {
         const lang = getLang();
+
+        // Normalize tours on every render to apply current language
+        let multiTours = rawMultiTours.map(t => normalizeTour(t, 'multiDayTours'));
+        let dayTours   = rawDayTours.map(t => normalizeTour(t, 'dayTours'));
+
+        // Fallback: also include old 'tours' if new collections are empty
+        if (multiTours.length === 0 && oldTours.filter(t => t.type === 'multi').length > 0) {
+          oldTours.filter(t => t.type === 'multi').forEach(t => multiTours.push(normalizeTour({...t, _source: 'tours'}, 'tours')));
+        }
+        if (dayTours.length === 0 && oldTours.filter(t => t.type !== 'multi').length > 0) {
+          oldTours.filter(t => t.type !== 'multi').forEach(t => dayTours.push(normalizeTour({...t, _source: 'tours'}, 'tours')));
+        }
+
         const multiGrid = document.getElementById('multiToursGrid');
         if (multiTours.length > 0) {
-          multiGrid.innerHTML = featuredHTML(multiTours[0])
-            + multiTours.slice(1).map((t, i) => tourCardHTML(t, i)).join('');
+          multiGrid.innerHTML = multiTours.map((t, i) => tourCardHTML(t, i)).join('');
         } else {
           const emptyMsg = window.t ? window.t('tours.empty.multi', lang) : 'Многодневные туры скоро появятся';
           multiGrid.innerHTML = emptyHTML(emptyMsg);
@@ -1043,9 +1060,16 @@
 
       renderTourGrids();
 
+      // Initialize tour sliders after DOM is populated
+      setTimeout(() => {
+        initTourSliders();
+      }, 100);
+
       // Re-render tours when language changes
       window.addEventListener('langChanged', () => {
         renderTourGrids();
+        // Reinitialize slider arrows after language change
+        setTimeout(initTourSliders, 100);
       });
 
     } catch(e) {
@@ -1125,20 +1149,35 @@
       setInterval(() => goToReview(reviewSlideIndex + 1), 5000);
     }
 
+    let approvedReviews = [];
+
     try {
       const allReviews = await rtdbGetAll('reviews');
-      const approved = allReviews.filter(r => r.status === 'approved' || !r.status);
-      const track = document.getElementById('reviewsTrack');
-
-      if (approved.length > 0) {
-        // Sort by newest first
-        approved.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-        track.innerHTML = approved.map(r => reviewCardHTML(r)).join('');
-      } else {
-        // No reviews yet — hide slider completely
-        track.parentElement.style.display = 'none';
+      approvedReviews = allReviews.filter(r => r.status === 'approved' || !r.status);
+      
+      function renderReviews() {
+        const track = document.getElementById('reviewsTrack');
+        if (!track) return;
+        if (approvedReviews.length > 0) {
+          track.innerHTML = approvedReviews.map(r => reviewCardHTML(r)).join('');
+          track.parentElement.style.display = '';
+        } else {
+          track.parentElement.style.display = 'none';
+        }
       }
+
+      if (approvedReviews.length > 0) {
+        // Sort by newest first
+        approvedReviews.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      }
+      
+      renderReviews();
       initReviewSlider();
+
+      window.addEventListener('langChanged', () => {
+        renderReviews();
+      });
+
     } catch(e) {
       console.error('Firebase reviews load error:', e);
       initReviewSlider();
@@ -1242,6 +1281,41 @@
       `;
       container.appendChild(p);
     }
+
+    /* Tour slider arrows */
+    function initTourSliders() {
+      const sliders = document.querySelectorAll('.tours-slider-wrap');
+      sliders.forEach(slider => {
+        const grid = slider.querySelector('.tours-grid');
+        const leftBtn = slider.querySelector('.arrow-left');
+        const rightBtn = slider.querySelector('.arrow-right');
+
+        const updateArrowState = () => {
+          if (!grid) return;
+          const isAtStart = grid.scrollLeft <= 5;
+          const isAtEnd = grid.scrollLeft >= grid.scrollWidth - grid.clientWidth - 5;
+          
+          leftBtn?.classList.toggle('disabled', isAtStart);
+          rightBtn?.classList.toggle('disabled', isAtEnd);
+        };
+
+        leftBtn?.addEventListener('click', () => {
+          grid?.scrollBy({ left: -400, behavior: 'smooth' });
+          setTimeout(updateArrowState, 150);
+        });
+
+        rightBtn?.addEventListener('click', () => {
+          grid?.scrollBy({ left: 400, behavior: 'smooth' });
+          setTimeout(updateArrowState, 150);
+        });
+
+        grid?.addEventListener('scroll', updateArrowState);
+        setTimeout(updateArrowState, 300);
+      });
+    }
+
+    // Initialize sliders after DOM is ready
+    setTimeout(initTourSliders, 500);
 
     /* Star rating */
     const stars = document.querySelectorAll('.star-btn');

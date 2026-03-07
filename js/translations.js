@@ -55,6 +55,7 @@ const translations = {
   "tours.hour":           { ru: "час",    en: "hour",    ka: "საათი" },
   "tours.people":         { ru: "чел.",   en: "people",  ka: "ადამ." },
   "tours.person":         { ru: "чел.",   en: "person",  ka: "ადამ." },
+  "tours.featured":       { ru: "Рекомендуем", en: "Featured", ka: "რეკომენდირებული" },
 
   // ── MAP SECTION ──
   "map.tag":       { ru: "География",   en: "Geography",    ka: "გეოგრაფია" },
@@ -321,6 +322,7 @@ const translations = {
   "region.abkhazia":      { ru: "Абхазия",          en: "Abkhazia",         ka: "აფხაზეთი" },
   "region.abkhazia.desc": { ru: "Историческая область Грузии, Новый Афон, озеро Рица", en: "Historic region of Georgia, New Athos, Lake Ritsa", ka: "საქართველოს ისტორიული მხარე, ახალი ათონი, რიწის ტბა" },
   "region.abkhazia.badge":{ ru: "Историческая область", en: "Historic Region", ka: "ისტორიული მხარე" },
+  "region.svaneti":       { ru: "Сванетия",         en: "Svaneti",          ka: "სვანეთი" },
 
   // ── COUNTRIES for review form ──
   "country.russia":       { ru: "Россия",       en: "Russia",       ka: "რუსეთი" },
@@ -477,20 +479,20 @@ function t(key, lang) {
 // Helper: translate country name from Russian to current language
 function translateCountry(countryRu, lang) {
   const countryMap = {
-    'Россия': 'country.russia',
-    'Украина': 'country.ukraine',
-    'Беларусь': 'country.belarus',
-    'Казахстан': 'country.kazakhstan',
-    'Грузия': 'country.georgia',
-    'Армения': 'country.armenia',
-    'Азербайджан': 'country.azerbaijan',
-    'Узбекистан': 'country.uzbekistan',
-    'Германия': 'country.germany',
-    'Франция': 'country.france',
-    'Израиль': 'country.israel',
-    'Турция': 'country.turkey',
-    'США': 'country.usa',
-    'Другая': 'country.other'
+    'Россия': 'country.russia', 'Russia': 'country.russia',
+    'Украина': 'country.ukraine', 'Ukraine': 'country.ukraine',
+    'Беларусь': 'country.belarus', 'Belarus': 'country.belarus',
+    'Казахстан': 'country.kazakhstan', 'Kazakhstan': 'country.kazakhstan',
+    'Грузия': 'country.georgia', 'Georgia': 'country.georgia',
+    'Армения': 'country.armenia', 'Armenia': 'country.armenia',
+    'Азербайджан': 'country.azerbaijan', 'Azerbaijan': 'country.azerbaijan',
+    'Узбекистан': 'country.uzbekistan', 'Uzbekistan': 'country.uzbekistan',
+    'Германия': 'country.germany', 'Germany': 'country.germany',
+    'Франция': 'country.france', 'France': 'country.france',
+    'Израиль': 'country.israel', 'Israel': 'country.israel',
+    'Турция': 'country.turkey', 'Turkey': 'country.turkey',
+    'США': 'country.usa', 'USA': 'country.usa',
+    'Другая': 'country.other', 'Other': 'country.other'
   };
   const key = countryMap[countryRu];
   if (key) return t(key, lang);
@@ -520,9 +522,32 @@ function translateGroup(groupRu, lang) {
     .replace(/человек/gi, t('tours.people', lang));
 }
 
+// Helper: translate region name from Georgian (DB value) to current language
+function translateRegion(regionKa, lang) {
+  const regionMap = {
+    'თბილისი': 'region.tbilisi',
+    'კახეთი': 'region.kakheti',
+    'მცხეთა-მთიანეთი': 'region.mtskheta',
+    'აჭარა': 'region.adjara',
+    'იმერეთი': 'region.imereti',
+    'სამეგრელო': 'region.samegrelo',
+    'სამცხე-ჯავახეთი': 'region.samtskhe',
+    'შიდა ქართლი': 'region.shida',
+    'ქვემო ქართლი': 'region.kvemo',
+    'რაჭა-ლეჩხუმი': 'region.racha',
+    'გურია': 'region.guria',
+    'აფხაზეთი': 'region.abkhazia',
+    'სვანეთი': 'region.svaneti'
+  };
+  const key = regionMap[regionKa];
+  if (key) return t(key, lang);
+  return regionKa;
+}
+
 // Make globally available
 window.translations = translations;
 window.t = t;
 window.translateCountry = translateCountry;
 window.translateDuration = translateDuration;
 window.translateGroup = translateGroup;
+window.translateRegion = translateRegion;
