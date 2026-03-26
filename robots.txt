@@ -1,12 +1,15 @@
-# robots.txt for DAMQ Travel
-# https://damqtravel.com
+# robots.txt for DAMQ Travel (damqtravel.com)
+# Website: https://damqtravel.com
+# Brand: damqtravel
 
 # Allow all search engines
 User-agent: *
 Allow: /
+Allow: /home.html
+Allow: /index.html
 
-# Crawl delay for respectful crawling
-Crawl-delay: 1
+# No crawl delay for faster indexing
+# Crawl-delay: 1
 
 # Disallow admin and login pages
 Disallow: /admin.html
@@ -22,7 +25,7 @@ Allow: /js/main.js
 Allow: /js/translations.js
 Allow: /images/
 
-# Sitemap location
+# Sitemap location - IMPORTANT for damqtravel indexing
 Sitemap: https://damqtravel.com/sitemap.xml
 
 # Google specific

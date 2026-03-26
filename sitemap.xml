@@ -3,20 +3,37 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   
-  <!-- Homepage -->
+  <!-- Homepage (Index/Splash) -->
   <url>
     <loc>https://damqtravel.com/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://damqtravel.com/?lang=ru"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://damqtravel.com/?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ka" href="https://damqtravel.com/?lang=ka"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://damqtravel.com/"/>
-    <lastmod>2026-03-18</lastmod>
+    <lastmod>2026-03-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://damqtravel.com/images/hero.png</image:loc>
-      <image:title>DAMQ Travel - Туры по Грузии</image:title>
-      <image:caption>Красивый пейзаж Грузии - премиум туры от DAMQ Travel</image:caption>
+      <image:title>damqtravel - DAMQ Travel - Туры по Грузии</image:title>
+      <image:caption>damqtravel.com - Красивый пейзаж Грузии - премиум туры от DAMQ Travel</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Main Content Page (home.html) -->
+  <url>
+    <loc>https://damqtravel.com/home.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://damqtravel.com/home.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://damqtravel.com/home.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ka" href="https://damqtravel.com/home.html?lang=ka"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://damqtravel.com/home.html"/>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://damqtravel.com/images/hero.png</image:loc>
+      <image:title>damqtravel - DAMQ Travel - Премиум туры по Грузии</image:title>
+      <image:caption>damqtravel.com - Откройте Грузию с DAMQ Travel</image:caption>
     </image:image>
   </url>
   
