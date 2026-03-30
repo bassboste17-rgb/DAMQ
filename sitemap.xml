@@ -114,43 +114,10 @@
     <priority>0.3</priority>
   </url>
   
-  <!-- Dynamic Tour Pages (Example URLs - these would be generated dynamically) -->
-  <!-- Tours: Batumi - Mestia -->
+  <!-- Tour Detail Page -->
   <url>
-    <loc>https://damqtravel.com/tours/batumi-mestia</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Tours: Tbilisi - Kazbegi -->
-  <url>
-    <loc>https://damqtravel.com/tours/tbilisi-kazbegi</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Tours: Wine Tour Kakheti -->
-  <url>
-    <loc>https://damqtravel.com/tours/wine-tour-kakheti</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Tours: Batumi City Tour -->
-  <url>
-    <loc>https://damqtravel.com/tours/batumi-city-tour</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Tours: Borjomi - Vardzia -->
-  <url>
-    <loc>https://damqtravel.com/tours/borjomi-vardzia</loc>
-    <lastmod>2026-03-18</lastmod>
+    <loc>https://damqtravel.com/tour-detail.html</loc>
+    <lastmod>2026-03-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
