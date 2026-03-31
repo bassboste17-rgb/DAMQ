@@ -454,8 +454,24 @@
 
     async function init() {
       allBlogs = await rtdbGetAll('posts');
-      // Sort by date desc
-      allBlogs.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      // Sort: videos first, then by date desc, then by id desc for stable sorting
+      allBlogs.sort((a, b) => {
+        const aHasVideo = !!(a.video || a.videoUrl);
+        const bHasVideo = !!(b.video || b.videoUrl);
+        
+        // Videos come first
+        if (aHasVideo && !bHasVideo) return -1;
+        if (!aHasVideo && bHasVideo) return 1;
+        
+        // Then sort by date desc
+        const aTime = a.createdAt || 0;
+        const bTime = b.createdAt || 0;
+        if (aTime !== bTime) {
+          return bTime - aTime;
+        }
+        // If same timestamp, sort by id desc
+        return (b.id || 0) - (a.id || 0);
+      });
       renderBlogs(allBlogs);
     }
 

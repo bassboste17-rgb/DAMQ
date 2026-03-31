@@ -2482,16 +2482,15 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ---------- Blog Grid ---------- */
 .blog-grid {
-  column-count: 3 !important;
-  column-gap: 10px;
-  display: block;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
 }
 
 .blog-card {
-  break-inside: avoid;
-  display: inline-block;
+  display: block;
   width: 100%;
-  margin-bottom: 10px;
   background: transparent;
   border-radius: 16px;
   overflow: hidden;
@@ -2516,8 +2515,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .page-blog .blog-card-image {
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .page-blog .blog-card-image video {
@@ -3534,8 +3532,11 @@ h1, h2, h3, h4, h5, h6 {
     font-size: clamp(28px, 6vw, 40px);
   }
   .blog-grid {
-    column-count: 2 !important;
-    column-gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+  }
+  .blog-card {
+    margin-bottom: 0; /* Remove margin since grid handles spacing */
   }
   .blog-card {
     margin-bottom: 8px;
